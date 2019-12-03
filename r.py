@@ -6,23 +6,6 @@ import nltk
 import re
 from nltk.stem import WordNetLemmatizer
 
-print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
-"2.Understand your word --- Examples, root, meaning\n"+
-"3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
-btn1 = int(input())
-
-if btn1==1:
-    print("Welcome to the Findhub where you can find words !!!")
-    print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
-    ch = input()
-    find(ch)
-elif btn1==2:
-    print("Welcome to the Knowledge Hub, where you can understand your word !!!")
-    print("Enter your word:")
-    word=input()
-    print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
-
-
 def find(ch) :
 
     if ch==1:
@@ -52,6 +35,25 @@ def find(ch) :
         cha=''
         posi=-1
         cross(wordin,leng,cha,posi)
+
+print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
+"2.Understand your word --- Examples, root, meaning\n"+
+"3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
+btn1 = int(input())
+
+if btn1==1:
+    print("Welcome to the Findhub where you can find words !!!")
+    print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
+    ch = input()
+    find(ch)
+elif btn1==2:
+    print("Welcome to the Knowledge Hub, where you can understand your word !!!")
+    print("Enter your word:")
+    word=input()
+    print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
+
+
+
 
 def syn(word):
     print("Synonym")
