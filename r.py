@@ -76,24 +76,27 @@ def cross(word,leng,cha,posi):
     if(posi==-1):
         for l in fn:
             if len(l) == leng:
-                print(l) 
-        
+                print(l)
+        print("Need narrower results?\nEnter 1 if you have fixed characters,else 0." )
+        more = int(input())
+        if(more==1):
+            print("Enter the character and its position that is fixed\nCharacter:")
+            cha = input()
+            print("Enter its position(starting from 0)")
+            posi = int(input())
+            cross(word,leng,cha,posi)
+
+
+
     else:
         print("Narrower results:")
-        # for l in fn:
-        #     if len(l) == leng & l:
-        #         print(l) 
+        for l in fn:
+            if len(l) == leng and l[posi]==cha:
+                print(l)
 
 
 
-    print("Need narrower results?\nEnter 1 if you have fixed characters,else 0." )
-    more = int(input())
-    if(more==1):
-        print("Enter the character and its position that is fixed\nCharacter:")
-        cha = input()
-        print("Enter its position(starting from 0)")
-        posi = int(input())
-        cross(word,leng,cha,posi)
+    
         
     
 
