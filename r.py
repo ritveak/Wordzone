@@ -224,17 +224,20 @@ print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, 
 "3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
 btn1 = int(input())
 if btn1==1:
-    print("Welcome to the Findhub where you can find words !!!")
+    print("Welcome to the Finding Zone, where you can find words !!!")
     print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
     co = int(input())
     find(co)
 elif btn1==2:
-    print("Welcome to the Knowledge Hub, where you can understand your word !!!")
+    print("Welcome to the Understanding Zone, where you can understand your word !!!")
     print("Enter your word:")
     word=input()
     #print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
     # co = int(input())
     mean(word)
+elif btn1==3:
+    print("Welcome to the Knowledge Zone, here you can learn new words related to your word")
+    print("Homonym")
 
 
 
