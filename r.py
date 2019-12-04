@@ -48,12 +48,12 @@ def cross(word,leng,cha,posi):
 
 
     print("Need narrower results?\nEnter 1 if you have fixed characters,else 0." )
-    more = input()
+    more = int(input())
     if(more==1):
         print("Enter the character and its position that is fixed\nCharacter:")
         cha = input()
         print("Enter its position(starting from 0)")
-        posi = input()
+        posi = int(input())
         cross(word,leng,cha,posi)
         
     
@@ -119,7 +119,7 @@ def rhymerdic() :
 
 
 
-    mean=input("If you wish to see the meaning and other details \nof the resulting words enter 1 else 0")
+    mean=int(input("If you wish to see the meaning and other details \nof the resulting words enter 1 else 0"))
     if(mean=="0"):
         sys.exit()
     l = WordNetLemmatizer()
@@ -145,7 +145,7 @@ def find(ch) :
     elif ch==3:
         print("Welcome to Rhymzone")
         print("Do you want your rhyming word to be of some particular meaning?\nPress 0 for NO and 1 for YES")
-        cho = input()
+        cho = int(input())
         if cho==0:
             rhy()
         else:
@@ -155,7 +155,7 @@ def find(ch) :
         print("Enter a single word that is nearest to the description")
         wordin = input()
         print("Enter the length of the word")
-        leng=input()
+        leng=int(input())
         cha=''
         posi=-1
         cross(wordin,leng,cha,posi)
