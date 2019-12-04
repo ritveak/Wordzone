@@ -202,6 +202,23 @@ def find(ch) :
         posi=-1
         cross(wordin,leng,cha,posi)
 
+def mean(word):
+    syns = wordnet.synsets(word) 
+    # # An example of a synset: 
+    # lemmatizer = WordNetLemmatizer() 
+    
+    # print("Root word :", lemmatizer.lemmatize(syns[0].lemma_names()[0]))
+    # Just the word: 
+    print("Your word : "+ word)
+    for l in syns:
+        print("Meaning : "+l.definition())
+        print("Example : ",end='')
+        for e in l.examples() :
+            print(e,end="\n          ")
+        print("")
+
+#------------------------------------------------------Start of main program-----------------------------------------------------
+
 print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
 "2.Understand your word --- Examples, root, meaning\n"+
 "3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
@@ -215,7 +232,10 @@ elif btn1==2:
     print("Welcome to the Knowledge Hub, where you can understand your word !!!")
     print("Enter your word:")
     word=input()
-    print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
+    #print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
+    # co = int(input())
+    mean(word)
+
 
 
     
