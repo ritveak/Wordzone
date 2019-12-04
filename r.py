@@ -6,65 +6,35 @@ import nltk
 import re
 from nltk.stem import WordNetLemmatizer
 
-def find(ch) :
-
-    if ch==1:
-        print("Welcome to Synzone ")
-        print("Enter your word:")
-        wordin = input()
-        syn(wordin)
-    elif ch==2:
-        print("Welcome to Antizone")
-        print("Enter your word:")
-        wordin = input()
-        ant(wordin)
-    elif ch==3:
-        print("Welcome to Rhymzone")
-        print("Do you want your rhyming word to be of some particular meaning?\nPress 0 for NO and 1 for YES")
-        cho = input()
-        if cho==0:
-            rhy()
-        else:
-            rhymerdic()
-    elif ch==4:
-        print("Welcome to CrosswordZone")
-        print("Enter a single word that is nearest to the description")
-        wordin = input()
-        print("Enter the length of the word")
-        leng=input()
-        cha=''
-        posi=-1
-        cross(wordin,leng,cha,posi)
-
-print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
-"2.Understand your word --- Examples, root, meaning\n"+
-"3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
-btn1 = int(input())
-
-if btn1==1:
-    print("Welcome to the Findhub where you can find words !!!")
-    print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
-    ch = input()
-    find(ch)
-elif btn1==2:
-    print("Welcome to the Knowledge Hub, where you can understand your word !!!")
-    print("Enter your word:")
-    word=input()
-    print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
-
-
 
 
 def syn(word):
-    print("Synonym")
+    print("Synonyms for " + word+" are :\n")
+    synonyms = [] 
+     
+  
+    for syn in wordnet.synsets(word): 
+        for l in syn.lemmas(): 
+            synonyms.append(l.name())     
+    print(set(synonyms)) 
+   
+
 
 
 def ant(word):
-    print("Antonym")
+    print("Antonyms for " + word+" are :\n")
+    antonyms = []
+    for syn in wordnet.synsets(word): 
+        for l in syn.lemmas():  
+            if l.antonyms(): 
+                antonyms.append(l.antonyms()[0].name())
+    print(set(antonyms)) 
 
 def rhy():
     print("Enter your word")
     word = input()
+    fb = pronouncing.rhymes(word)
+    print(fb)
     
 
 
@@ -160,6 +130,50 @@ def rhymerdic() :
         print("Main Word - " + ld +"\n" )
         print("Meaning - "+ lw[0].definition() +"\n")
     
+def find(ch) :
 
-    
+    if ch==1:
+        print("Welcome to Synzone ")
+        print("Enter your word:")
+        wordin = input()
+        syn(wordin)
+    elif ch==2:
+        print("Welcome to Antizone")
+        print("Enter your word:")
+        wordin = input()
+        ant(wordin)
+    elif ch==3:
+        print("Welcome to Rhymzone")
+        print("Do you want your rhyming word to be of some particular meaning?\nPress 0 for NO and 1 for YES")
+        cho = input()
+        if cho==0:
+            rhy()
+        else:
+            rhymerdic()
+    elif ch==4:
+        print("Welcome to CrosswordZone")
+        print("Enter a single word that is nearest to the description")
+        wordin = input()
+        print("Enter the length of the word")
+        leng=input()
+        cha=''
+        posi=-1
+        cross(wordin,leng,cha,posi)
+
+print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
+"2.Understand your word --- Examples, root, meaning\n"+
+"3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
+btn1 = int(input())
+if btn1==1:
+    print("Welcome to the Findhub where you can find words !!!")
+    print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
+    co = int(input())
+    find(co)
+elif btn1==2:
+    print("Welcome to the Knowledge Hub, where you can understand your word !!!")
+    print("Enter your word:")
+    word=input()
+    print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
+
+
     
