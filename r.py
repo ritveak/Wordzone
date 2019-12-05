@@ -236,20 +236,30 @@ elif btn1==2:
     # co = int(input())
     mean(word)
 elif btn1==3:
-    print("Welcome to the Knowledge Zone, here you can learn new words related to your word")
+    print("Welcome to the Knowledge Zone, here you can learn new words related to your word.\nEnter your word:")
     word = input()
     print("Hypernym: ")
-    hr=[]
+    sn=""
+    an=""
+    dn=""
     syns=wordnet.synsets(word)
     for syn in syns:
-        sn=syn.hypernyms()#broader category:colour is a hypernym of red.
-        print("Hypernym (Words with broader meaning for eg, colour is a hypernym of red) :\n")
-        print(sn)
-        an=syn.hyponyms() #narrower category - red : color'
-        print("Hyponym (Words with narrower meaning for eg red is hyponym of colour):\n")
-        print(an)
-        dn=syn.member_holonyms()#Body is a holonym of arm, leg and heart
-        print("Holonym (thing that comprises of other things for eg body is holonym of arm ):\n")
+        
+        s=syn.hypernyms()#broader category:colour is a hypernym of red.
+        for q in s:
+            sn+=q.lemma_names()[0]+"\n"
+        a=syn.hyponyms() #narrower category - red : color'
+        for q in a:
+            an+=q.lemma_names()[0]+"\n"
+        d=syn.member_holonyms()#Body is a holonym of arm, leg and heart
+        for q in d:
+            dn+=q.lemma_names()[0]+"\n"
+    print("Hypernym (Words with broader meaning for eg, colour is a hypernym of red) :\n")
+    print(sn+"\n")
+    print("Hyponym (Words with narrower meaning for eg red is hyponym of colour):\n")
+    print(an+"\n")
+    print("Holonym (thing that comprises of other things for eg body is holonym of arm ):\n")
+    print(dn+"\n")
         # for s in sn:
         #     hr+=s.lemma_names()
         # for a in an:
