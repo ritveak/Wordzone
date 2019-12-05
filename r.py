@@ -237,7 +237,25 @@ elif btn1==2:
     mean(word)
 elif btn1==3:
     print("Welcome to the Knowledge Zone, here you can learn new words related to your word")
-    print("Homonym")
+    word = input()
+    print("Hypernym: ")
+    hr=[]
+    syns=wordnet.synsets(word)
+    for syn in syns:
+        sn=syn.hypernyms()#broader category:colour is a hypernym of red.
+        print("Hypernym (Words with broader meaning for eg, colour is a hypernym of red) :\n")
+        print(sn)
+        an=syn.hyponyms() #narrower category - red : color'
+        print("Hyponym (Words with narrower meaning for eg red is hyponym of colour):\n")
+        print(an)
+        dn=syn.member_holonyms()#Body is a holonym of arm, leg and heart
+        print("Holonym (thing that comprises of other things for eg body is holonym of arm ):\n")
+        # for s in sn:
+        #     hr+=s.lemma_names()
+        # for a in an:
+        #     hr+=a.lemma_names()
+        # for d in dn:
+        #     hr+=d.lemma_names()
 
 
 
