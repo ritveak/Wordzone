@@ -5,6 +5,10 @@ from nltk.corpus import wordnet
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
+import pyttsx3 
+  
+# initialisation 
+engine = pyttsx3.init()
 
 
 
@@ -218,13 +222,23 @@ def mean(word):
         print("")
 
 #------------------------------------------------------Start of main program-----------------------------------------------------
-
-print("Enter your Choice:\n1.Find your word --- rhyming to, meaning similar to, meaning opposite to , Ace your crossword game\n"+
-"2.Understand your word --- Examples, root, meaning\n"+
-"3.Know new things --- other synset props like hypernym, hyponym etc --- Their definition and implementation (use documents)")
+rate = engine.getProperty('rate')
+engine.setProperty('rate', rate+1)
+print("Enter your Choice:\n1.Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
+engine.say("Enter your Choice:")
+engine.say("press 1, to Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
+engine.runAndWait()
+print("2.Understand your word, that is to get Examples, root and meaning of your word")
+engine.say("press 2, to Understand your word, that is to get Examples, root and meaning of your word")
+engine.runAndWait()
+print("3.Know new words related to your word, like hypernym, hyponym etc")
+engine.say("press 3, to Know new words related to your word, like hypernym, hyponym etc")
+engine.runAndWait() 
 btn1 = int(input())
 if btn1==1:
     print("Welcome to the Finding Zone, where you can find words !!!")
+    engine.say("Welcome to the Finding Zone, where you can find words !!!")
+    engine.runAndWait()
     print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
     co = int(input())
     find(co)
