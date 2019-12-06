@@ -223,7 +223,7 @@ def mean(word):
 
 #------------------------------------------------------Start of main program-----------------------------------------------------
 rate = engine.getProperty('rate')
-engine.setProperty('rate', rate+1)
+engine.setProperty('rate', rate+10)
 print("Enter your Choice:\n1.Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
 engine.say("Enter your Choice:")
 engine.say("press 1, to Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
@@ -237,22 +237,45 @@ engine.runAndWait()
 btn1 = int(input())
 if btn1==1:
     print("Welcome to the Finding Zone, where you can find words !!!")
-    engine.say("Welcome to the Finding Zone, where you can find words !!!")
+    engine.say("Welcome to the Finding Zone, where you can find words")
     engine.runAndWait()
-    print("Choose your option:\n1.Find a word with similar meaning\n2.Find a word with opposite meaning\n3.Find a word rhyming with your word\n4.Find a word for your crossword puzzle")
+    print("Choose your option:")
+    engine.say("Choose your Option ")
+    engine.runAndWait()
+    print("1.Find a word with similar meaning")
+    engine.say("Press 1 to Find a word with a similar meaning")
+    engine.runAndWait()
+    print("2.Find a word with opposite meaning")
+    engine.say("Press 2 to Find a word with opposite meaning")
+    engine.runAndWait()
+    print("3.Find a word rhyming with your word")
+    engine.say("Press 3 to Find a word rhyming with your word")
+    engine.runAndWait()
+    print("4.Find a word for your crossword puzzle")
+    engine.say("and, press 4 to Find a word for your crossword puzzle")
+    engine.runAndWait()
     co = int(input())
     find(co)
 elif btn1==2:
     print("Welcome to the Understanding Zone, where you can understand your word !!!")
+    engine.say("Welcome to the Understanding Zone,a place where you can understand your word !!!")
+    engine.runAndWait()
     print("Enter your word:")
+    engine.say("Enter your word")
+    engine.runAndWait()
     word=input()
     #print("Choose what you wish to know:\n1.Meaning\n2.Root\n3.Examples")
     # co = int(input())
     mean(word)
 elif btn1==3:
-    print("Welcome to the Knowledge Zone, here you can learn new words related to your word.\nEnter your word:")
+    print("Welcome to the Knowledge Zone, here you can learn new words related to your word.")
+    engine.say("Welcome to the Knowledge Zone, here you can learn new words related to your word.")
+    engine.runAndWait()
+    print("Enter your word:")
+    engine.say("Enter your word")
+    engine.runAndWait()
+
     word = input()
-    print("Hypernym: ")
     sn=""
     an=""
     dn=""
@@ -269,11 +292,18 @@ elif btn1==3:
         for q in d:
             dn+=q.lemma_names()[0]+"\n"
     print("Hypernym (Words with broader meaning for eg, colour is a hypernym of red) :\n")
+    
     print(sn+"\n")
+    engine.say("On your screen are the hypernyms of "+word+", Hypernyms are the Words with broader meaning for example, colour is a hypernym of red")
+    engine.runAndWait()
     print("Hyponym (Words with narrower meaning for eg red is hyponym of colour):\n")
     print(an+"\n")
+    engine.say("On your screen are the hypornyms of "+word+", Hypernyms are the Words with narrower meaning for example, red is a hyponym of color")
+    engine.runAndWait()
     print("Holonym (thing that comprises of other things for eg body is holonym of arm ):\n")
     print(dn+"\n")
+    engine.say("On your screen are the holonyms of "+word+", Holonym is a thing that comprises of other things for eg body is holonym of arm")
+    engine.runAndWait()
         # for s in sn:
         #     hr+=s.lemma_names()
         # for a in an:

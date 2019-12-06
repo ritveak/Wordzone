@@ -40,18 +40,31 @@
 #     print("Cannot obtain results;{0}".format(e))
 
 ###############################text to speech###########################
-# import pyttsx3 
+import pyttsx3 
   
-# # initialisation 
-# engine = pyttsx3.init() 
+# initialisation 
+engine = pyttsx3.init() 
   
-# # testing  
-# engine.say("Enter your Choice:")
-# engine.say("press 1, to Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
-# engine.say("press 2, to Understand your word, that is to get Examples, root and meaning of your word")
-# engine.say("press 3, to Know new words related to your word, like hypernym, hyponym etc")
-# engine.runAndWait() 
-
+# testing  
+a ="Adam"
+print("Welcome to the Finding Zone, where you can find words !!!")
+engine.say("Welcome"+a)
+engine.runAndWait()
+print("Choose your option:")
+# engine.say("Choose your Option ")
+# engine.runAndWait()
+# print("1.Find a word with similar meaning")
+# engine.say("Press 1 to Find a word with a similar meaning")
+# engine.runAndWait()
+# print("2.Find a word with opposite meaning")
+# engine.say("Press 2 to Find a word with opposite meaning")
+# engine.runAndWait()
+# print("3.Find a word rhyming with your word")
+# engine.say("Press 3 to Find a word rhyming with your word")
+# engine.runAndWait()
+# print("4.Find a word for your crossword puzzle")
+# engine.say("press 4 to Find a word for your crossword puzzle")
+# engine.runAndWait()
 
 # import pyttsx3
 # def onStart(name):
