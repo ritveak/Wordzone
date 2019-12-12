@@ -1,3 +1,2 @@
-print ("The original lists are : " + str(list1) +
-# 							" " + str(list2) +
-# 							" " + str(list3)) 
+engine.say("On your screen are the holonyms of "+word+", Holonym is a thing that comprises of other things for eg body is holonym of arm")
+    # engine.runAndWait()
