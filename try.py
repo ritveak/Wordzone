@@ -1,5 +1,11 @@
 #kivy
+from kivy.app import App
+from kivy.uix.label import Label
 
+
+class MyApp(App):
+    def buil(self):
+        return 
 
 
 # from nltk.corpus import wordnet
