@@ -1,3 +1,7 @@
+#kivy
+
+
+
 # from nltk.corpus import wordnet
 # # from nltk.stem import WordNetLemmatizer 
 # word = "technologically"
@@ -40,17 +44,18 @@
 #     print("Cannot obtain results;{0}".format(e))
 
 ###############################text to speech###########################
-import pyttsx3 
+# import pyttsx3 
   
-# initialisation 
-engine = pyttsx3.init() 
+# # initialisation 
+# engine = pyttsx3.init() 
   
-# testing  
-a ="Adam"
-print("Welcome to the Finding Zone, where you can find words !!!")
-engine.say("Welcome"+a)
-engine.runAndWait()
-print("Choose your option:")
+# # testing  
+# a ="Adam"
+# print("Welcome to the Finding Zone, where you can find words !!!")
+# engine.say("Welcome"+a)
+# engine.runAndWait()
+# print("Choose your option:")
+
 # engine.say("Choose your Option ")
 # engine.runAndWait()
 # print("1.Find a word with similar meaning")
@@ -79,3 +84,4 @@ print("Choose your option:")
 # engine.connect('finished-utterance', onEnd)
 # engine.say('The quick brown fox jumped over the lazy dog.')
 # engine.runAndWait()
+
