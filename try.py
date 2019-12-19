@@ -1,12 +1,20 @@
 #kivy
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.textinput import TextInput
+
+class MyGrid(GridLayout):
+    def __init__(self,**kwargs):
+        super(MyGrid,self).__init__(**kwargs)
 
 
 class MyApp(App):
-    def buil(self):
-        return 
+    def build(self):
+        return Label(text ="Hello Doomed world")
 
+if __name__ =="__main__":
+    MyApp().run()
 
 # from nltk.corpus import wordnet
 # # from nltk.stem import WordNetLemmatizer 
