@@ -3,30 +3,73 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
-
-class MyGrid(GridLayout):
-    def __init__(self,**kwargs):
-        super(MyGrid,self).__init__(**kwargs)
-        self.cols=4
-        self.add_widget(Label(text="First Name: "))
-        self.fname = TextInput(multiline=False)
-        self.add_widget(self.fname)
-
-        self.add_widget(Label(text="Last Name: "))
-        self.lname = TextInput(multiline=False)
-        self.add_widget(self.lname)
-
-        self.add_widget(Label(text="Email: "))
-        self.email = TextInput(multiline=False)
-        self.add_widget(self.email)
+from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 
 
-class MyApp(App):
+
+
+## USING GRID LAYOUT - ie. USING PYTHON COMMANDS FOR PUTTING IN ELEMENTS
+
+# class MyGrid(GridLayout):
+#     def __init__(self,**kwargs):
+#         super(MyGrid,self).__init__(**kwargs)
+#         self.cols=1
+#         self.inside = GridLayout()
+#         self.inside.cols =2
+
+#         self.inside.add_widget(Label(text="First Name: "))
+#         self.fname = TextInput(multiline=False)
+#         self.inside.add_widget(self.fname)
+
+#         self.inside.add_widget(Label(text="Last Name: "))
+#         self.lname = TextInput(multiline=False)
+#         self.inside.add_widget(self.lname)
+
+#         self.inside.add_widget(Label(text="Email: "))
+#         self.email = TextInput(multiline=False)
+#         self.inside.add_widget(self.email)
+#         self.add_widget(self.inside)
+#         self.submit = Button(text = "Submit", font_size=24)
+#         self.submit.bind(on_press=self.pressed)
+#         self.add_widget(self.submit)
+    
+#     def pressed(self,instance):
+#         print("Name:",self.fname.text,self.lname.text)
+#         self.fname.text = ""
+#         self.lname.text = ""
+        
+
+
+
+# class MyApp(App):
+#     def build(self):
+#         return MyGrid()
+
+# if __name__ =="__main__":
+#     MyApp().run()
+
+
+
+## USING KV FILE
+
+class MyGrid(Widget):
+    pass
+
+class TryApp(App):
     def build(self):
         return MyGrid()
 
-if __name__ =="__main__":
-    MyApp().run()
+
+if __name__ == "__main__":
+    TryApp().run()
+
+
+
+
+
+
+#------------------------------------------------xxxxxxxxxxxxxxxx---------------------------------------------
 
 # from nltk.corpus import wordnet
 # # from nltk.stem import WordNetLemmatizer 
@@ -53,7 +96,8 @@ if __name__ =="__main__":
 # # # Examples of the word in use in sentences: 
 # # print(syns[0].examples())
 
-###################speech_recognition####################
+#------------------------------------------------xxxxxxxxxxxxxxxx---------------------------------------------
+
 
 # import speech_recognition as sr 
 # r = sr.Recognizer()
