@@ -1,15 +1,16 @@
 #kivy
+
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
 
 
 
-
-## USING GRID LAYOUT - ie. USING PYTHON COMMANDS FOR PUTTING IN ELEMENTS
+## INHERITING GRID LAYOUT - ie. USING PYTHON COMMANDS FOR PUTTING IN ELEMENTS
 
 # class MyGrid(GridLayout):
 #     def __init__(self,**kwargs):
@@ -51,9 +52,12 @@ from kivy.uix.widget import Widget
 
 
 
-## USING KV FILE
+## INHERITING WIDGET ie. USING KV FILE
 
 class MyGrid(Widget):
+    name = ObjectProperty(None)
+    email = ObjectProperty(None)
+    
     pass
 
 class TryApp(App):
