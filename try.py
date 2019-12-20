@@ -58,7 +58,11 @@ class MyGrid(Widget):
     name = ObjectProperty(None)
     email = ObjectProperty(None)
     
-    pass
+    def btn(self):
+        print(self.name.text, self.email.text)
+        self.name.text =""
+        self.name.text=""
+
 
 class TryApp(App):
     def build(self):
