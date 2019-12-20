@@ -7,11 +7,23 @@ from kivy.uix.textinput import TextInput
 class MyGrid(GridLayout):
     def __init__(self,**kwargs):
         super(MyGrid,self).__init__(**kwargs)
+        self.cols=4
+        self.add_widget(Label(text="First Name: "))
+        self.fname = TextInput(multiline=False)
+        self.add_widget(self.fname)
+
+        self.add_widget(Label(text="Last Name: "))
+        self.lname = TextInput(multiline=False)
+        self.add_widget(self.lname)
+
+        self.add_widget(Label(text="Email: "))
+        self.email = TextInput(multiline=False)
+        self.add_widget(self.email)
 
 
 class MyApp(App):
     def build(self):
-        return Label(text ="Hello Doomed world")
+        return MyGrid()
 
 if __name__ =="__main__":
     MyApp().run()
