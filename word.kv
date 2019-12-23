@@ -1,19 +1,40 @@
 <MyGrid>:
-    # name: a
-    # email: b
+    Button:
+        text:"Find\nZone"
+        on_press:root.findZone()
+        pos_hint:{"x":0.1,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
         
-    GridLayout:
-        cols:1
-        size:root.width-300, root.height-300
-        pos:200,200
-        GridLayout:
-            cols:3
-            Button:
-                text:"Find Zone"
-                on_press:root.findZone()
-            Button:
-                text:"Understand Zone"
-                on_press:root.understandZone()
-            Button:
-                text:"Knowledge Zone"
-                on_press:root.knowledgeZone()
+    Button:
+        text:"Understand\nZone"
+        on_press:root.understandZone()
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+    Button:
+        text:"Knowledge\nZone"
+        on_press:root.knowledgeZone()
+        pos_hint:{"x":0.7,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
