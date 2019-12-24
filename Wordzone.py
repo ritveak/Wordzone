@@ -4,6 +4,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 # from kivy.properties import ObjectProperty
 import pronouncing
 import re
@@ -371,6 +373,29 @@ class MyGrid(FloatLayout):
     #     print(self.name.text, self.email.text)
     #     self.name.text =""
     #     self.name.text=""
+
+kv = Builder.load_file("word.kv")
+
+class MainWindow(Screen):
+    pass
+
+class FindWindow(Screen):
+    pass
+
+class UnderstandWindow(Screen):
+    pass
+
+
+class KnowWindow(Screen):
+    pass
+
+
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
 
 
 class WordApp(App):
