@@ -35,7 +35,7 @@ class MyGrid(FloatLayout):
             print("Synonyms for " + word+" are :\n")
             print(set(synonyms))
         else:
-            print("No synonyms were found, try entering a different word.");
+            print("No synonyms were found, try entering a different word.")
     
 
 
@@ -51,7 +51,7 @@ class MyGrid(FloatLayout):
             print("antonyms for " + word+" are :\n")
             print(set(antonyms))
         else:
-            print("No antonyms were found, try entering a different word."); 
+            print("No antonyms were found, try entering a different word.")
 
     def rhy(self):
         print("Enter your word")
@@ -60,7 +60,7 @@ class MyGrid(FloatLayout):
         if(len(fb)>0):
             print(fb)
         else:
-            print("No rhyming words were found, try entering a different word."); 
+            print("No rhyming words were found, try entering a different word.")
         
 
 
@@ -114,12 +114,12 @@ class MyGrid(FloatLayout):
                     posi = int(input())
                     self.cross(word,leng,cha,posi)
             else:
-                print("No words were found, try entering a different word."); 
+                print("No words were found, try entering a different word.")
 
 
 
         else:
-            narrowcount=0;
+            narrowcount=0
             
             for l in fn:
                 if len(l) == leng and l[posi]==cha:
@@ -128,7 +128,7 @@ class MyGrid(FloatLayout):
                     narrowcount+=1
                     print(l)
                 if(narrowcount==0):
-                    print("No words were found, try entering a different word."); 
+                    print("No words were found, try entering a different word.")
 
 
 
@@ -330,7 +330,7 @@ class MyGrid(FloatLayout):
             print("Holonym (thing that comprises of other things for eg body is holonym of arm ):\n")
             print(dn+"\n")
         if(an=="" and sn=="" and dn=="" ):
-            print("No related word was found");
+            print("No related word was found")
         # engine.say("On your screen are the holonyms of "+word+", Holonym is a thing that comprises of other things for eg body is holonym of arm")
         # engine.runAndWait()
             # for s in sn:

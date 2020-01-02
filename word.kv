@@ -32,7 +32,104 @@ WindowManager:
 
 
 
+<MainWindow>:
+    name:"main"
+    GridLayout:
+        cols:3
 
+    Button:
+        text:"Find\nZone"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.1,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        
+    Button:
+        text:"Understand\nZone"
+        on_release:app.root.current="UnderstandWindow"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+    Button:
+        text:"Knowledge\nZone"
+        on_release:app.root.current="KnowWindow"
+        pos_hint:{"x":0.7,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+
+
+
+
+
+
+#break
+
+<FindWindow>:
+    name:"FindWindow"
+
+<FSynInput>:
+    name:"FSynInput"
+<FSynRes>:
+    name:"FSynRes"
+    
+<FAntoInput>:
+    name:"FAntoInput"
+<FAntoRes>:
+    name:"FAntoRes"
+
+<FRhyInput>:
+    name:"FRhyInput"
+<FRhyOpt>:
+    name:"FRhyOpt"
+<FRhyMeanInput>:
+    name:"FRhyMeanInput"
+<FRhyMeanRes>:
+    name:"FRhyMeanRes"
+<FRhyDirectRes>:
+    name:"FRhyDirectRes"
+<FRhyMeanResDetail>:
+    name:"FRhyMeanResDetail"
+<FRhyDirectResDetail>:
+    name:"FRhyDirectResDetail"
+
+<FCrossInput>:
+    name:"FCrossInput"
+<FCrossRes>:
+    name:"FCrossRes"
+<FCrossNarrow>:
+    name:"FCrossNarrow"
+<FCrossNarrowRes>:
+    name:"FCrossNarrowRes"
+
+<UnderstandWindow>:
+    name:"UnderstandWindow"
+<URes>:
+    name:"URes"
+
+<KnowWindow>:
+    name:"KnowWindow"
+<KRes>:
+    name:"KRes"
 
 
 <MyGrid>:
