@@ -18,7 +18,7 @@ import pyttsx3
   
 # initialisation 
 engine = pyttsx3.init()
-
+kv = Builder.load_file("word.kv")
 
 class MyGrid(FloatLayout):
 
@@ -346,47 +346,60 @@ class MyGrid(FloatLayout):
 
 #------------------------------------------------------Start of main program-----------------------------------------------------
 
-# #rate = engine.getProperty('rate')
-# #engine.setProperty('rate', rate+10)
-# print("Enter your Choice:\n1.Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
-# # engine.say("Enter your Choice:")
-# # engine.say("press 1, to Find your word which is rhyming to, meaning similar to, meaning opposite to or to Ace your crossword game")
-# # engine.runAndWait()
-# print("2.Understand your word, that is to get Examples, root and meaning of your word")
-# # engine.say("press 2, to Understand your word, that is to get Examples, root and meaning of your word")
-# # engine.runAndWait()
-# print("3.Know new words related to your word, like hypernym, hyponym etc")
-# # engine.say("press 3, to Know new words related to your word, like hypernym, hyponym etc")
-# # engine.runAndWait() 
-
-    
 
 
 
-    
-
-
-    # name = ObjectProperty(None)
-    # email = ObjectProperty(None)
-
-    # def btn(self):
-    #     print(self.name.text, self.email.text)
-    #     self.name.text =""
-    #     self.name.text=""
-
-kv = Builder.load_file("word.kv")
 
 class MainWindow(Screen):
     pass
-
+#Find Zone
 class FindWindow(Screen):
     pass
 
-class UnderstandWindow(Screen):
+class FSynInput(Screen):
+    pass
+class FSynRes(Screen):
     pass
 
+class FAntoInput(Screen):
+    pass
+class FAntoRes(Screen):
+    pass
 
+class FRhyInput(Screen):
+    pass
+class FRhyOpt(Screen):
+    pass
+class FRhyMeanInput(Screen):
+    pass
+class FRhyMeanRes(Screen):
+    pass
+class FRhyDirectRes(Screen):
+    pass
+class FRhyMeanResDetail(Screen):
+    pass
+class FRhyDirectResDetail(Screen):
+    pass
+
+class FCrossInput(Screen):
+    pass
+class FCrossRes(Screen):
+    pass
+class FCrossNarrow(Screen):
+    pass
+class FCrossNarrowRes(Screen):
+    pass
+
+#Understand Zone
+class UnderstandWindow(Screen):
+    pass
+class URes(Screen):
+    pass
+
+#Knowledge Zone
 class KnowWindow(Screen):
+    pass
+class KRes(Screen):
     pass
 
 
