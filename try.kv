@@ -1,23 +1,184 @@
-<MyGrid>:
-    name: a
-    email: b
-        
+#:import utils kivy.utils
+WindowManager:
+    MainWindow:
+# Find Zone
+    FindWindow:
+
+#Understand Zone
+    UnderstandWindow:
+
+#Knowledge Zone
+    KnowWindow:
+
+
+
+<MainWindow>:
+    name:"main"
     GridLayout:
-        cols:1
-        size:root.width-300, root.height-300
-        pos:200,200
-        GridLayout:
-            cols:2
-            Label:
-                text:"Name: "
-            TextInput:
-                id:a
-                multiline:False
-            Label:
-                text:"Email: "
-            TextInput:
-                id:b
-                multiline:False
-        Button:
-            text:"Submit"
-            on_press:root.btn()
+        cols:3
+    SmoothButton:
+        text:"Find\nZone"
+        bold: True
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.1,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border: 0, 32, 0, 32
+        size: 200, 64
+        center: root.width / 2, root.height / 2
+        
+    SmoothButton:
+        text:"Understand\nZone"
+        on_release:app.root.current="UnderstandWindow"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        # background_color: utils.get_color_from_hex('#58AE6F')
+        border:0.1,0.1,0.2,0.4
+    SmoothButton:
+        text:"Knowledge\nZone"
+        
+        on_release:app.root.current="KnowWindow"
+        pos_hint:{"x":0.7,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border:0.1,0.1,0.2,0.4
+
+
+
+
+
+
+#FindZone
+
+<FindWindow>:
+    name:"FindWindow"
+    Button:
+        text:"Back"
+        on_release:app.root.current="main"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+
+
+
+#Understanding Zone
+
+<UnderstandWindow>:
+    name:"UnderstandWindow"
+    Button:
+        text:"Back"
+        on_release:app.root.current="main"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+
+
+#Knowledge Zone
+
+<KnowWindow>:
+    name:"KnowWindow"
+    Button:
+        text:"Back"
+        on_release:app.root.current="main"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:0,0,0,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        border:0.1,0.1,0.2,0.4
+
+
+
+<SmoothButton@Button>:
+    background_color:(0,0,0,0)
+    background_normal:''
+    back_color: (0.565, 0.557, 0.698,0.8)
+    border_radius:[0,35,0,35]
+    font_name:'Comic'
+    canvas.before:
+        Color:
+            rgba:self.back_color
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:self.border_radius
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# <MyGrid>:
+#     name: a
+#     email: b
+        
+#     GridLayout:
+#         cols:1
+#         size:root.width-300, root.height-300
+#         pos:200,200
+#         GridLayout:
+#             cols:2
+#             Label:
+#                 text:"Name: "
+#             TextInput:
+#                 id:a
+#                 multiline:False
+#             Label:
+#                 text:"Email: "
+#             TextInput:
+#                 id:b
+#                 multiline:False
+#         Button:
+#             text:"Submit"
+#             on_press:root.btn()
+
+

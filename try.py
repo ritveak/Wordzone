@@ -1,12 +1,12 @@
 #kivy
 
-from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
+# from kivy.app import App
+# from kivy.uix.label import Label
+# from kivy.uix.gridlayout import GridLayout
+# from kivy.uix.textinput import TextInput
+# from kivy.uix.button import Button
+# from kivy.uix.widget import Widget
+# from kivy.properties import ObjectProperty
 
 
 
@@ -54,23 +54,23 @@ from kivy.properties import ObjectProperty
 
 ## INHERITING WIDGET ie. USING KV FILE
 
-class MyGrid(Widget):
-    name = ObjectProperty(None)
-    email = ObjectProperty(None)
+# class MyGrid(Widget):
+#     name = ObjectProperty(None)
+#     email = ObjectProperty(None)
     
-    def btn(self):
-        print(self.name.text, self.email.text)
-        self.name.text =""
-        self.name.text=""
+#     def btn(self):
+#         print(self.name.text, self.email.text)
+#         self.name.text =""
+#         self.name.text=""
 
 
-class TryApp(App):
-    def build(self):
-        return MyGrid()
+# class TryApp(App):
+#     def build(self):
+#         return MyGrid()
 
 
-if __name__ == "__main__":
-    TryApp().run()
+# if __name__ == "__main__":
+#     TryApp().run()
 
 
 
@@ -163,3 +163,44 @@ if __name__ == "__main__":
 # engine.say('The quick brown fox jumped over the lazy dog.')
 # engine.runAndWait()
 
+#All the important imports
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+
+#To get a purplish background in all the screens
+from kivy.core.window import Window
+Window.clearcolor = (0.259, 0.251, 0.447,0.9)
+
+#Main Window Screen declaration
+class MainWindow(Screen):
+    pass
+
+#Find Zone
+class FindWindow(Screen):
+    pass
+
+#Understand Zone
+class UnderstandWindow(Screen):
+    pass
+
+#Knowledge Zone
+class KnowWindow(Screen):
+    pass
+
+#Window Manager
+class WindowManager(ScreenManager):
+    pass
+
+#To load our kv file:
+kv = Builder.load_file("try.kv")
+
+#Our main App
+class tryApp(App):
+    def build(self):
+        return kv#MyGrid()
+
+#App initialising through main
+if __name__ == "__main__":
+    tryApp().run()
