@@ -15,10 +15,11 @@ import nltk
 import re
 from nltk.stem import WordNetLemmatizer
 import pyttsx3 
-  
+from kivy.core.window import Window
+Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # initialisation 
 engine = pyttsx3.init()
-kv = Builder.load_file("word.kv")
+
 
 class MyGrid(FloatLayout):
 
@@ -409,11 +410,11 @@ class WindowManager(ScreenManager):
     pass
 
 
-
+kv = Builder.load_file("word.kv")
 
 class WordApp(App):
     def build(self):
-        return MyGrid()
+        return kv#MyGrid()
 
 
 if __name__ == "__main__":
