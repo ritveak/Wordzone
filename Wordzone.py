@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
 # from kivy.properties import ObjectProperty
 import pronouncing
 import re
@@ -358,6 +359,11 @@ class FindWindow(Screen):
     pass
 
 class FSynInput(Screen):
+    word = ObjectProperty(None)
+    def btn(self):
+        print(self.word.text)
+     
+        
     pass
 class FSynRes(Screen):
     pass
