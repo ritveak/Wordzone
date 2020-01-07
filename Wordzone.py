@@ -369,12 +369,16 @@ class FSynRes(Screen):
     pass
 
 class FAntoInput(Screen):
-    pass
+    word = ObjectProperty(None)
+    def btn(self):
+        print(self.word.text)
 class FAntoRes(Screen):
     pass
 
 class FRhyInput(Screen):
-    pass
+    word = ObjectProperty(None)
+    def btn(self):
+        print(self.word.text)
 class FRhyOpt(Screen):
     pass
 class FRhyMeanInput(Screen):
@@ -399,13 +403,17 @@ class FCrossNarrowRes(Screen):
 
 #Understand Zone
 class UnderstandWindow(Screen):
-    pass
+    word = ObjectProperty(None)
+    def btn(self):
+        print(self.word.text)
 class URes(Screen):
     pass
 
 #Knowledge Zone
 class KnowWindow(Screen):
-    pass
+    word = ObjectProperty(None)
+    def btn(self):
+        print(self.word.text)
 class KRes(Screen):
     pass
 

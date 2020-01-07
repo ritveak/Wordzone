@@ -38,6 +38,7 @@ WindowManager:
     GridLayout:
         cols:3
     
+    Label:
 
     SmoothButton:
         text:"Find\nZone"
@@ -171,29 +172,83 @@ WindowManager:
 
 <FSynInput>:
     name:"FSynInput"
-    word: a
-    GridLayout:
-        cols:1
+    word: a         
     Label:
         text:"Enter your word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.5,"y":0.5}
+        pos_hint:{"x":0.4,"y":0.45}
+        #size_hint:0.2,0.2
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
         on_press:root.btn()
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
 
 <FSynRes>:
     name:"FSynRes"
-    
 <FAntoInput>:
     name:"FAntoInput"
+    word: a         
+    Label:
+        text:"Enter your word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.4,"y":0.45}
+        #size_hint:0.2,0.2
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
+    GreenButton:
+        text:"Submit"
+        on_press:root.btn()
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
+
 <FAntoRes>:
     name:"FAntoRes"
 
 <FRhyInput>:
     name:"FRhyInput"
+    word: a         
+    Label:
+        text:"Enter your word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.4,"y":0.45}
+        #size_hint:0.2,0.2
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
+    GreenButton:
+        text:"Submit"
+        on_press:root.btn()
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
 <FRhyOpt>:
     name:"FRhyOpt"
 <FRhyMeanInput>:
@@ -220,10 +275,29 @@ WindowManager:
 
 <UnderstandWindow>:
     name:"UnderstandWindow"
+    word: a         
+    Label:
+        text:"Enter your word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        background_color: 0.4,0.2,0.5,1
+        back_color:0.4,0.2,0.5,1
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.4,"y":0.45}
+        #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="main"
-        pos_hint:{"x":0.4,"y":0.1}
+        pos_hint:{"x":0.2,"y":0.15}
+    GreenButton:
+        text:"Submit"
+        on_press:root.btn()
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
 <URes>:
     name:"URes"
 
@@ -231,10 +305,29 @@ WindowManager:
 
 <KnowWindow>:
     name:"KnowWindow"
+    word: a         
+    Label:
+        text:"Enter your word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        background_color: 0.4,0.2,0.5,1
+        back_color:0.4,0.2,0.5,1
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.4,"y":0.45}
+        #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="main"
-        pos_hint:{"x":0.4,"y":0.1}
+        pos_hint:{"x":0.2,"y":0.15}
+    GreenButton:
+        text:"Submit"
+        on_press:root.btn()
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
 <KRes>:
     name:"KRes"
 
@@ -275,24 +368,15 @@ WindowManager:
             radius:self.border_radius
 
 <EnterWord@TextInput>:
-    background_color:(0,0,0,0)
-    background_normal:''
-    back_color: (0.345, 0.682, 0.435 , 0)
-    border_radius:[15]
     font_name:'Comic'
-    size_hint:0.2,0.1
     font_size:25
-    color:1,1,1,1
-    text_size: self.size     
+    size_hint:0.2,0.08
     halign: 'center'
     valign: 'center'
-    canvas.before:
-        Color:
-            rgba:1,1,1,1
-        RoundedRectangle:
-            size:self.size
-            pos:self.pos
-            radius:self.border_radius
+    multiline:False
+    # pos_hint:{"x":,"y":}
+    
+    
 
 
 
