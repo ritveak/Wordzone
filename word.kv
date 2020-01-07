@@ -39,12 +39,18 @@ WindowManager:
         cols:3
     
     Label:
+        text:"WELCOME TO WORDZONE !"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.75}
+        size_hint:0.1,0.1
+        underline:True
 
     SmoothButton:
         text:"Find\nZone"
         bold: True
         on_release:app.root.current="FindWindow"
-        pos_hint:{"x":0.1,"y":0.4}
+        pos_hint:{"x":0.1,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -61,7 +67,7 @@ WindowManager:
         text:"Understand\nZone"
         
         on_release:app.root.current="UnderstandWindow"
-        pos_hint:{"x":0.4,"y":0.4}
+        pos_hint:{"x":0.4,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -76,7 +82,7 @@ WindowManager:
         text:"Knowledge\nZone"
         
         on_release:app.root.current="KnowWindow"
-        pos_hint:{"x":0.7,"y":0.4}
+        pos_hint:{"x":0.7,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -96,14 +102,19 @@ WindowManager:
 
 <FindWindow>:
     name:"FindWindow"
-    GridLayout:
-        cols:4
-        # row_default_height: 30
+    Label:
+        text:"FINDZONE !"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.75}
+        size_hint:0.1,0.1
+        underline:True
+    
     SmoothButton:
         text:"Similar\nmeaning\nwords "
         bold: True
         on_release:app.root.current="FSynInput"
-        pos_hint:{"x":0.04,"y":0.4}
+        pos_hint:{"x":0.04,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -121,7 +132,7 @@ WindowManager:
         text:"Opposite\nMeaning\nwords"
         
         on_release:app.root.current="FAntoInput"
-        pos_hint:{"x":0.28,"y":0.4}
+        pos_hint:{"x":0.28,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -136,7 +147,7 @@ WindowManager:
         text:"Rhyming\nWords"
         
         on_release:app.root.current="FRhyInput"
-        pos_hint:{"x":0.52,"y":0.4}
+        pos_hint:{"x":0.52,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -151,7 +162,7 @@ WindowManager:
         text:"Crossword\nHelper"
         
         on_release:app.root.current="FCrossInput"
-        pos_hint:{"x":0.76,"y":0.4}
+        pos_hint:{"x":0.76,"y":0.3}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -282,8 +293,7 @@ WindowManager:
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
         size_hint:0.1,0.1
-        background_color: 0.4,0.2,0.5,1
-        back_color:0.4,0.2,0.5,1
+        
     EnterWord:
         id:a
         multiline:False
@@ -312,8 +322,7 @@ WindowManager:
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
         size_hint:0.1,0.1
-        background_color: 0.4,0.2,0.5,1
-        back_color:0.4,0.2,0.5,1
+        
     EnterWord:
         id:a
         multiline:False
