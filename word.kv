@@ -183,14 +183,14 @@ WindowManager:
 
 <FSynInput>:
     name:"FSynInput"
-    word: a         
+    word: a
+    ans: ans    
     Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
         size_hint:0.1,0.1
-        
     EnterWord:
         id:a
         multiline:False
@@ -203,11 +203,20 @@ WindowManager:
     GreenButton:
         text:"Submit"
         on_press:root.btn()
+        # on_release:app.root.current="FSynRes"
         pos_hint:{"x":0.6,"y":0.15}
+    Label:
+        id:ans
+        
         #size_hint:0.2,0.2
 
 <FSynRes>:
     name:"FSynRes"
+    
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
 <FAntoInput>:
     name:"FAntoInput"
     word: a         
@@ -383,7 +392,7 @@ WindowManager:
 <EnterWord@TextInput>:
     font_name:'Comic'
     font_size:25
-    size_hint:0.2,0.08
+    size_hint:0.3,0.08
     halign: 'center'
     valign: 'center'
     multiline:False
