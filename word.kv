@@ -202,8 +202,9 @@ WindowManager:
         pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
-        on_press:root.btn()
-        # on_release:app.root.current="FSynRes"
+        on_press:
+            root.manager.get_screen('FSynRes').res.text =root.syn(a.text)
+        on_release:app.root.current="FSynRes"
         pos_hint:{"x":0.6,"y":0.15}
     Label:
         id:ans
@@ -212,10 +213,13 @@ WindowManager:
 
 <FSynRes>:
     name:"FSynRes"
-    
+    res:res
+    Output:
+        id:res 
+
     GreenButton:
         text:"Back"
-        on_release:app.root.current="FindWindow"
+        on_release:app.root.current="FSynInput"
         pos_hint:{"x":0.2,"y":0.15}
 <FAntoInput>:
     name:"FAntoInput"
@@ -397,7 +401,11 @@ WindowManager:
     valign: 'center'
     multiline:False
     # pos_hint:{"x":,"y":}
-    
+<Output@Label>:
+    font_name:'Roboto'
+    valign: 'center'
+    back_color: (0.565, 0.557, 0.698,0.8)
+    color: 1,1,1,1
     
 
 

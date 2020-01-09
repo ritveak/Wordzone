@@ -347,29 +347,6 @@ class MyGrid(FloatLayout):
 
 
 #------------------------------------------------------Start of main program-----------------------------------------------------
-
-def syn(word):    
-    synonyms = [] 
-
-    for syn in wordnet.synsets(word): 
-        for l in syn.lemmas(): 
-            synonyms.append(l.name())
-    if(len(synonyms)>0):     
-        print("Synonyms for " + word+" are :\n")
-        print(set(synonyms))
-        ss=set(synonyms)
-        new = "" 
-        for x in ss: 
-            new += x+"\n"  
-        return new
-    else:
-        print("No synonyms were found, try entering a different word.")
-        return "No synonyms were found, try entering a different word."
-
-
-
-
-
 class MainWindow(Screen):
     pass
 #Find Zone
@@ -379,11 +356,26 @@ class FindWindow(Screen):
 class FSynInput(Screen):
     word = ObjectProperty(None)
     ans = ObjectProperty(None)
-    def btn(self, *args):
-        print(self.word.text)
-        self.ans.text = syn(self.word.text)
-     
-    pass
+    
+    def syn(self,word):    
+        synonyms = [] 
+
+        for syn in wordnet.synsets(word): 
+            for l in syn.lemmas(): 
+                synonyms.append(l.name())
+        if(len(synonyms)>0):     
+            print("Synonyms for " + word+" are :\n")
+            print(set(synonyms))
+            ss=set(synonyms)
+            new = "" 
+            for x in ss: 
+                new += x+"\n"
+                #add more details like pos and all  
+            return new
+        else:
+            print("No synonyms were found, try entering a different word.")
+            return "No synonyms were found, try entering a different word."
+
 class FSynRes(Screen):
     pass
 
