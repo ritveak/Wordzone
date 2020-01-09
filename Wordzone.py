@@ -429,6 +429,10 @@ class FRhyMeanInput(Screen):
 class FRhyMeanRes(Screen):
     pass
 class FRhyDirectRes(Screen):
+    # def __init__ (self,**kwargs):
+    #     root = ScrollView()
+    #     self.add_widget(root)
+        
     pass
 class FRhyMeanResDetail(Screen):
     pass
