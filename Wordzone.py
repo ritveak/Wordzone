@@ -7,6 +7,8 @@ from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
+from kivy.uix.scrollview import ScrollView
+from kivy.properties import StringProperty
 # from kivy.properties import ObjectProperty
 import pronouncing
 import re
@@ -409,7 +411,19 @@ class FRhyInput(Screen):
     def btn(self):
         print(self.word.text)
 class FRhyOpt(Screen):
-    pass
+    def rhy(self,word):
+        fb = pronouncing.rhymes(word)
+        if(len(fb)>0):
+            ss=set(fb)
+            new = "" 
+            for x in ss: 
+                new += x+"\n"
+                #add more details like pos and all
+            print(new) 
+            return new
+        else:
+            return "No rhyming words were found, try entering a different word."
+
 class FRhyMeanInput(Screen):
     pass
 class FRhyMeanRes(Screen):

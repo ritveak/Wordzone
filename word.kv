@@ -1,7 +1,7 @@
 #:import utils kivy.utils
 WindowManager:
     MainWindow:
-# Find Zone
+    # Find Zone
     FindWindow:
     FSynInput:
     FSynRes:
@@ -23,11 +23,11 @@ WindowManager:
     FCrossNarrowRes:
 
 
-#Understand Zone
+    #Understand Zone
     UnderstandWindow:
     URes:
 
-#Knowledge Zone
+    #Knowledge Zone
     KnowWindow:
     KRes:
 
@@ -222,7 +222,7 @@ WindowManager:
         pos_hint:{"x":0.2,"y":0.05}
     GreenButton:
         text:"Exit"
-        on_release:app.root.current=app.Exit()  
+        on_release:app.root.current=app.stop() 
         pos_hint:{"x":0.6,"y":0.05}
 <FAntoInput>:
     name:"FAntoInput"
@@ -264,7 +264,7 @@ WindowManager:
         pos_hint:{"x":0.2,"y":0.05}
     GreenButton:
         text:"Exit"
-        on_release:app.root.current=app.Exit()  
+        on_release:app.root.current=app.stop()
         pos_hint:{"x":0.6,"y":0.05}
 
 <FRhyInput>:
@@ -288,17 +288,54 @@ WindowManager:
         pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
-        on_press:root.btn()
+        on_press:app.root.current="FRhyOpt"
         pos_hint:{"x":0.6,"y":0.15}
         #size_hint:0.2,0.2
 <FRhyOpt>:
     name:"FRhyOpt"
+    Label:
+        text:"Do you want your rhyming word to be related to some other word ?"
+        text_size:self.width,None
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.2,"y":0.65}
+        size_hint:0.6,0.2
+        halign:'center'
+    GreenButton:
+        text:"YES"
+        pos_hint:{"x":0.2,"y":0.3}
+    
+    GreenButton:
+        text:"NO"
+        pos_hint:{"x":0.6,"y":0.3}
+        on_press:
+            root.manager.get_screen('FRhyDirectRes').res.text =root.rhy(root.manager.get_screen('FRhyInput').word.text)
+        on_release:app.root.current="FRhyDirectRes"
 <FRhyMeanInput>:
     name:"FRhyMeanInput"
 <FRhyMeanRes>:
     name:"FRhyMeanRes"
 <FRhyDirectRes>:
     name:"FRhyDirectRes"
+    res:res
+    Output:
+        pos_hint:{"x":0.15,"y":0.2}
+        Label:
+            id:res
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+
+            
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FRhyInput"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 <FRhyMeanResDetail>:
     name:"FRhyMeanResDetail"
 <FRhyDirectResDetail>:
