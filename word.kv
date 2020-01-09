@@ -194,7 +194,7 @@ WindowManager:
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.4,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.45}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
@@ -215,12 +215,17 @@ WindowManager:
     name:"FSynRes"
     res:res
     Output:
-        id:res 
+        id:res
+        pos_hint:{"x":0.15,"y":0.2}
 
     GreenButton:
         text:"Back"
         on_release:app.root.current="FSynInput"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.Exit()  
+        pos_hint:{"x":0.6,"y":0.05}
 <FAntoInput>:
     name:"FAntoInput"
     word: a         
@@ -404,8 +409,18 @@ WindowManager:
 <Output@Label>:
     font_name:'Roboto'
     valign: 'center'
+    background_color:(0,0,0,0)
+    background_normal:''
     back_color: (0.565, 0.557, 0.698,0.8)
-    color: 1,1,1,1
+    border_radius:[35,35,35,35]
+    size_hint:0.7,0.7
+    canvas.before:
+        Color:
+            rgba:self.back_color
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:self.border_radius
     
 
 
