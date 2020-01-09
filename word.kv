@@ -183,8 +183,7 @@ WindowManager:
 
 <FSynInput>:
     name:"FSynInput"
-    word: a
-    ans: ans    
+    word: a  
     Label:
         text:"Enter your word : "
         font_size:30
@@ -206,8 +205,7 @@ WindowManager:
             root.manager.get_screen('FSynRes').res.text =root.syn(a.text)
         on_release:app.root.current="FSynRes"
         pos_hint:{"x":0.6,"y":0.15}
-    Label:
-        id:ans
+    
         
         #size_hint:0.2,0.2
 
@@ -239,7 +237,7 @@ WindowManager:
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.4,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.45}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
@@ -247,12 +245,27 @@ WindowManager:
         pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
-        on_press:root.btn()
+        on_press:
+            root.manager.get_screen('FAntoRes').res.text =root.ant(a.text)
+        on_release:app.root.current="FAntoRes"
         pos_hint:{"x":0.6,"y":0.15}
         #size_hint:0.2,0.2
 
 <FAntoRes>:
     name:"FAntoRes"
+    res:res
+    Output:
+        id:res
+        pos_hint:{"x":0.15,"y":0.2}
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FAntoInput"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.Exit()  
+        pos_hint:{"x":0.6,"y":0.05}
 
 <FRhyInput>:
     name:"FRhyInput"
@@ -267,7 +280,7 @@ WindowManager:
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.4,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.45}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
@@ -319,7 +332,7 @@ WindowManager:
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.4,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.45}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
@@ -348,7 +361,7 @@ WindowManager:
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.4,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.45}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"

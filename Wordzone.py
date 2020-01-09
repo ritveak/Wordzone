@@ -356,7 +356,7 @@ class FindWindow(Screen):
 class FSynInput(Screen):
     word = ObjectProperty(None)
     ans = ObjectProperty(None)
-    
+
     def syn(self,word):    
         synonyms = [] 
 
@@ -381,8 +381,26 @@ class FSynRes(Screen):
 
 class FAntoInput(Screen):
     word = ObjectProperty(None)
-    def btn(self):
-        print(self.word.text)
+    def ant(self,word):
+        
+        antonyms = []
+        for syn in wordnet.synsets(word): 
+            for l in syn.lemmas():  
+                if l.antonyms(): 
+                    antonyms.append(l.antonyms()[0].name())
+        if(len(antonyms)>0):     
+            # print("antonyms for " + word+" are :\n")
+            # print(set(antonyms))
+            ss=set(antonyms)
+            new = "" 
+            for x in ss: 
+                new += x+"\n"
+                #add more details like pos and all  
+            return new
+        else:
+            return "No antonyms were found, try entering a different word."
+
+
 class FAntoRes(Screen):
     pass
 
