@@ -320,11 +320,9 @@ WindowManager:
     res:res
     Output:
         pos_hint:{"x":0.15,"y":0.2}
-        Label:
-            id:res
-            size_hint_y: None
-            height: self.texture_size[1]
-            text_size: self.width, None
+        id:res
+
+        
 
             
 
@@ -358,14 +356,13 @@ WindowManager:
 
 <UnderstandWindow>:
     name:"UnderstandWindow"
-    word: a         
+    word: a  
     Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
         size_hint:0.1,0.1
-        
     EnterWord:
         id:a
         multiline:False
@@ -373,28 +370,41 @@ WindowManager:
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
-        on_release:app.root.current="main"
+        on_release:app.root.current="FindWindow"
         pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
-        on_press:root.btn()
+        on_press:
+            root.manager.get_screen('URes').res.text =root.mean(a.text)
+        on_release:app.root.current="URes"
         pos_hint:{"x":0.6,"y":0.15}
-        #size_hint:0.2,0.2
 <URes>:
     name:"URes"
+    res:res
+    Output:
+        id:res
+        pos_hint:{"x":0.15,"y":0.2}
 
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="UnderstandWindow"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 #Knowledge Zone
 
 <KnowWindow>:
     name:"KnowWindow"
-    word: a         
+    word: a  
     Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
         size_hint:0.1,0.1
-        
     EnterWord:
         id:a
         multiline:False
@@ -402,16 +412,62 @@ WindowManager:
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
-        on_release:app.root.current="main"
+        on_release:app.root.current="FindWindow"
         pos_hint:{"x":0.2,"y":0.15}
     GreenButton:
         text:"Submit"
-        on_press:root.btn()
+        on_press:
+            root.manager.get_screen('KRes').hyper.text =root.hyper(a.text)
+            root.manager.get_screen('KRes').hypo.text =root.hypo(a.text)
+            root.manager.get_screen('KRes').holo.text =root.holo(a.text)
+        on_release:app.root.current="KRes"
         pos_hint:{"x":0.6,"y":0.15}
-        #size_hint:0.2,0.2
 <KRes>:
     name:"KRes"
+    hypo:hypo
+    hyper:hyper
+    holo:holo
+    Label:
+        text:"Hypernym"
+        font_name:"Comic"
+        font_size:30
+        pos_hint:{"x":0.1,"y":0.2}
+        # size_hint:0.3,0.8
+    Label:
+        id:hypo
+        pos_hint:{"x":0.1,"y":0.4}
+        size_hint:0.3,0.8
+    
+    Label:
+        text:"Hyponym"
+        font_name:"Comic"
+        font_size:30
+        pos_hint:{"x":0.4,"y":0.1}
+        # size_hint:0.3,0.8
+    Label:
+        id:hyper
+        pos_hint:{"x":0.4,"y":0.2}
+        size_hint:0.3,0.8
 
+    Label:
+        text:"Holonym"
+        font_name:"Comic"
+        font_size:30
+        pos_hint:{"x":0.7,"y":0.1}
+        # size_hint:0.3,0.8
+    Label:
+        id:holo
+        pos_hint:{"x":0.7,"y":0.2}
+        size_hint:0.3,0.8
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="KnowWindow"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 
 <SmoothButton@Button>:
     background_color:(0,0,0,0)

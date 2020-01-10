@@ -451,16 +451,70 @@ class FCrossNarrowRes(Screen):
 #Understand Zone
 class UnderstandWindow(Screen):
     word = ObjectProperty(None)
-    def btn(self):
-        print(self.word.text)
+    def mean(self,word):
+        syns = wordnet.synsets(word) 
+        # # An example of a synset: 
+        # lemmatizer = WordNetLemmatizer() 
+        
+        # print("Root word :", lemmatizer.lemmatize(syns[0].lemma_names()[0]))
+        # Just the word: 
+        # print("Your word : "+ word)
+        ss=""
+        for l in syns:
+            ss+="Meaning : "+l.definition()+"\n"
+            
+            for e in l.examples() :
+                ss+="Example: "
+                ss+=e+"\n"
+                break;
+            ss+="\n"
+        if(len(syns)==0):
+            return "No words were found, try entering a different word."
+        else:
+            return ss;
 class URes(Screen):
     pass
 
 #Knowledge Zone
 class KnowWindow(Screen):
     word = ObjectProperty(None)
-    def btn(self):
-        print(self.word.text)
+    def hyper(self,word):
+        sn=""
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.hypernyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            return "No word found"
+
+    def hypo(self,word):
+        sn=""
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.hyponyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            return "No word found"
+    
+    def holo(self,word):
+        sn=""
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.member_holonyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            return "No word found"
+
+    
 class KRes(Screen):
     pass
 
