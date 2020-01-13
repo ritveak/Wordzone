@@ -102,9 +102,9 @@ def cross(word,leng,cha,posi):
                 cha = input()
                 print("Enter its position(starting from 0)")
                 posi = int(input())
-                cross(word,leng,cha,posi)
-        else:
-            print("No words were found, try entering a different word."); 
+                cross(word,leng,cha,0)
+        # else:
+        #     print("No words were found, try entering a different word."); 
 
 
 
@@ -117,8 +117,8 @@ def cross(word,leng,cha,posi):
                     print("Narrower results:")
                 narrowcount+=1
                 print(l)
-            if(narrowcount==0):
-                print("No words were found, try entering a different word."); 
+        if(narrowcount==0):
+            print("No words were found, try entering a different word."); 
 
 
 
