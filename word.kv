@@ -304,6 +304,9 @@ WindowManager:
     GreenButton:
         text:"YES"
         pos_hint:{"x":0.2,"y":0.3}
+        # on_press:
+        #     root.manager.get_screen('FRhyDirectRes').res.text =root.rhy(root.manager.get_screen('FRhyInput').word.text)
+        on_release:app.root.current="FRhyMeanInput"
     
     GreenButton:
         text:"NO"
@@ -313,8 +316,44 @@ WindowManager:
         on_release:app.root.current="FRhyDirectRes"
 <FRhyMeanInput>:
     name:"FRhyMeanInput"
+    word: a         
+    Label:
+        text:"Enter the word whose meaning should resemble with the rhyming word : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.65}
+        size_hint:0.1,0.1
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.35,"y":0.45}
+        #size_hint:0.2,0.2
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
+    GreenButton:
+        text:"Submit"
+        on_press:
+            root.manager.get_screen('FRhyMeanRes').res.text =root.rhymerdic(root.manager.get_screen('FRhyInput').word.text,root.manager.get_screen('FRhyMeanInput').word.text)
+        on_release:app.root.current="FRhyMeanRes"
+        pos_hint:{"x":0.6,"y":0.15}
 <FRhyMeanRes>:
     name:"FRhyMeanRes"
+
+    res:res
+    Output:
+        pos_hint:{"x":0.15,"y":0.2}
+        id:res
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FRhyMeanInput"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 <FRhyDirectRes>:
     name:"FRhyDirectRes"
     res:res
