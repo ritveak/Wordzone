@@ -11,7 +11,6 @@ import pyttsx3
 engine = pyttsx3.init()
 
 
-
 def syn(word):
 
     
@@ -197,7 +196,67 @@ def rhymerdic() :
         lw=wordnet.synsets(det)
         print("Main Word - " + ld +"\n" )
         print("Meaning - "+ lw[0].definition() +"\n")
+
+def load_words():
+    with open('words_alpha.txt') as word_file:
+        valid_words = set(word_file.read().split())
+
+    return valid_words
+
+def scrabble():
+    english_words = load_words()
+
+    w=input("Enter the word fragment :")
+    p=input("Enter its position : /n(^ for starting and $ for end, blank for anywhere) ")
+    l=input("Enter the length you desire :(blank if no specification)")
+    st=w
+    if(p=="^"):
+        st="^"+w
+        if(l.isdigit()):
+            le=int(l)-len(w)
+            if(le>0):
+                st = st+".{"+str(le)+"}"
+            else:
+                print("Word Length can't be lesser that the fragment length.")
+    elif (p=="$"):
+        st=w+"$"
+        if(l.isdigit()):
+            le=int(l)-len(w)
+            if(le>0):
+                st = ".{"+str(le)+"}"+st
+            else:
+                print("Word Length can't be lesser that the fragment length.")
+    elif(p==""):
+        if(l.isdigit()):
+            le=int(l)-len(w)
+            if(le>0):
+                st = ".*"+w+".*"
+            else:
+                print("Word Length can't be lesser that the fragment length.")
+
+    elif(p.isdigit()):
+        st = ".{"+p+"}"+w
+        if(l.isdigit()):
+            le=int(l)-len(w) - int(p)
+            if(le>0):
+                st = st+".{"+str(le)+"}"
+            else:
+                print("Word Length can't be lesser that the fragment length.")
+    else:
+        print("Invalid position")
+
+
+    # print(st)
     
+    reg = re.compile(st)
+    match=list(filter(reg.match,english_words))
+    for word in match:
+        if(l.isdigit()):
+            if(len(word)==int(l)):
+                print(word)
+        else:
+            print(word)
+
 def find(ch) :
 
     if ch==1:
@@ -227,6 +286,8 @@ def find(ch) :
         cha=''
         posi=-1
         cross(wordin,leng,cha,posi)
+    elif ch==5:
+        scrabble()
 
 def mean(word):
     syns = wordnet.synsets(word) 
@@ -279,6 +340,7 @@ if btn1==1:
     print("4.Find a word for your crossword puzzle")
     # engine.say("and, press 4 to Find a word for your crossword puzzle")
     # engine.runAndWait()
+    print("5.Find a word for your Scrabble game")
     co = int(input())
     find(co)
 elif btn1==2:
