@@ -466,6 +466,8 @@ class FScrabbleInput(Screen):
         # p=input("Enter its position : /n(^ for starting and $ for end, blank for anywhere) ")
         # l=input("Enter the length you desire :(blank if no specification)")
         st=w
+        if(w==""):
+            return "No Input"
         if(p=="^"):
             st="^"+w
             if(l.isdigit()):
@@ -517,7 +519,7 @@ class FScrabbleInput(Screen):
                 #print(word)
                 new+=word+"\n"
         if(new==""):
-            return "No antonyms were found, try entering a different word."
+            return "No words were found, try entering different parameters."
         else:
             return new
 

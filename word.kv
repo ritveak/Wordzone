@@ -173,25 +173,37 @@ WindowManager:
     name:"FRhyInput"
     word: a         
     Label:
+        text:"RHYMER DICTIONARY"
+        bold: True
+        font_size:35
+        font_name:'Comic'
+        pos_hint:{"x":0.35,"y":0.8}
+        size_hint:0.3,0.18
+        underline:True
+        # color:(0.612, 0.612, 0.035)
+
+        
+
+        
+    Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.45,"y":0.65}
+        pos_hint:{"x":0.45,"y":0.55}
         size_hint:0.1,0.1
-        
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.35,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.4}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="FindWindow"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.1}
     GreenButton:
         text:"Submit"
         on_press:app.root.current="FRhyOpt"
-        pos_hint:{"x":0.6,"y":0.15}
+        pos_hint:{"x":0.6,"y":0.1}
         #size_hint:0.2,0.2
 <FRhyOpt>:
     name:"FRhyOpt"
@@ -301,53 +313,71 @@ WindowManager:
     p: b
     l: c
     Label:
-        text:"Enter the word fragment : : "
+        text:"Scrabble Helper"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.85}
+        size_hint:0.1,0.1
+        underline:True
+
+    Label:
+        text:"Enter the word fragment : "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.15,"y":0.85}
+        pos_hint:{"x":0.25,"y":0.7}
         size_hint:0.1,0.1
         
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.55,"y":0.85}
+        pos_hint:{"x":0.65,"y":0.7}
+        hint_text:"Fixed word fragment"
         #size_hint:0.2,0.2
 
     Label:
-        text:"Enter its position : /n(^ for starting and $ for end, blank for anywhere) "
+        text:"Enter its position (optional):"
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.15,"y":0.85}
+        pos_hint:{"x":0.25,"y":0.5}
         size_hint:0.1,0.1
+    # Label:
+    #     text:"(^ for starting and $ for end, blank for anywhere)"
+    #     font_size:15
+    #     pos_hint:{"x":0.25,"y":0.68}
 
     EnterWord:
         id:b
         multiline:False
-        pos_hint:{"x":0.55,"y":0.65}
+        pos_hint:{"x":0.65,"y":0.5}
+        hint_text:"^ for starting and $ for end"
         #size_hint:0.2,0.2
         
     Label:
-        text:"Enter the length you desire :(blank if no specification) "
+        text:"Enter the length you desire (optional) :  "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.15,"y":0.85}
+        pos_hint:{"x":0.25,"y":0.3}
         size_hint:0.1,0.1
-
+    # Label:
+    #     text:"(blank if no specification):"
+    #     font_size:15
+    #     pos_hint:{"x":0.25,"y":0.3}
     EnterWord:
         id:c
         multiline:False
-        pos_hint:{"x":0.55,"y":0.45}
+        pos_hint:{"x":0.65,"y":0.3}
+        hint_text:"blank if no specification"
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="FindWindow"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.1}
     GreenButton:
         text:"Submit"
         on_press:
             root.manager.get_screen('FScrabbleRes').res.text =root.scrabble(a.text,b.text,c.text)
         on_release:app.root.current="FScrabbleRes"
-        pos_hint:{"x":0.6,"y":0.15}
+        pos_hint:{"x":0.6,"y":0.1}
         #size_hint:0.2,0.2
 
 <FScrabbleRes>:
@@ -413,11 +443,18 @@ WindowManager:
 
 <KnowWindow>:
     name:"KnowWindow"
+    Label:
+        text:"KNOWLEDGE ZONE !"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.8}
+        size_hint:0.1,0.1
+        underline:True
     SmoothButton:
         text:"Similar\nmeaning\nwords "
         bold: True
         on_release:app.root.current="KSynInput"
-        pos_hint:{"x":0.04,"y":0.35}
+        pos_hint:{"x":0.1,"y":0.35}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -435,7 +472,7 @@ WindowManager:
         text:"Opposite\nMeaning\nwords"
         
         on_release:app.root.current="KAntoInput"
-        pos_hint:{"x":0.28,"y":0.35}
+        pos_hint:{"x":0.4,"y":0.35}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -451,7 +488,7 @@ WindowManager:
         text:"Hyponym and\nHypernym\nwords"
         
         on_release:app.root.current="KHyperInput"
-        pos_hint:{"x":0.28,"y":0.75}
+        pos_hint:{"x":0.7,"y":0.35}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -465,31 +502,63 @@ WindowManager:
     GreenButton:
         text:"Back"
         on_release:app.root.current="main"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.4,"y":0.05}
 <KSynInput>:
     name:"KSynInput"
-    word: a  
+    word: a
+
+    # SmoothButton:
+    #     text:"SYNONYMS"
+    #     bold: True
+    #     font_size:35
+    #     pos_hint:{"x":0.35,"y":0.75}
+    #     size_hint:0.3,0.18
+    #     color:1,1,1,1
+    #     text_size: self.size     
+    #     halign: 'center'
+    #     valign: 'center'
+    #     background_normal: ''
+    #     background_color: 1, 1, 1, 0
+    #     border: 0, 32, 0, 32
+    #     size: 200, 64
+    #     height: 50
+    #     center: root.width / 2, root.height / 2
+
+
+    Label:
+        text:"SYNONYMS"
+        bold: True
+        font_size:35
+        font_name:'Comic'
+        pos_hint:{"x":0.35,"y":0.8}
+        size_hint:0.3,0.18
+        underline:True
+        # color:(0.612, 0.612, 0.035)
+
+        
+
+        
     Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.45,"y":0.65}
+        pos_hint:{"x":0.45,"y":0.55}
         size_hint:0.1,0.1
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.35,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.4}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="KnowWindow"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.1}
     GreenButton:
         text:"Submit"
         on_press:
             root.manager.get_screen('KSynRes').res.text =root.syn(a.text)
         on_release:app.root.current="KSynRes"
-        pos_hint:{"x":0.6,"y":0.15}
+        pos_hint:{"x":0.6,"y":0.1}
     
         
         #size_hint:0.2,0.2
@@ -513,28 +582,39 @@ WindowManager:
     name:"KAntoInput"
     word: a         
     Label:
+        text:"ANTONYMS"
+        bold: True
+        font_size:35
+        font_name:'Comic'
+        pos_hint:{"x":0.35,"y":0.8}
+        size_hint:0.3,0.18
+        underline:True
+        # color:(0.612, 0.612, 0.035)
+
+        
+
+        
+    Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.45,"y":0.65}
+        pos_hint:{"x":0.45,"y":0.55}
         size_hint:0.1,0.1
-        
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.35,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.4}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="KnowWindow"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.1}
     GreenButton:
         text:"Submit"
         on_press:
-            root.manager.get_screen('KAntoRes').res.text =root.ant(a.text)
+            root.manager.get_screen('KAntoRes').res.text =root.syn(a.text)
         on_release:app.root.current="KAntoRes"
-        pos_hint:{"x":0.6,"y":0.15}
-        #size_hint:0.2,0.2
+        pos_hint:{"x":0.6,"y":0.1}
 
 <KAntoRes>:
     name:"KAntoRes"
@@ -556,20 +636,34 @@ WindowManager:
     name:"KHyperInput"
     word: a  
     Label:
+        text:"HYPERNYMN - HYPONYMN - HOLONYMN"
+        bold: True
+        font_size:35
+        font_name:'Comic'
+        pos_hint:{"x":0.35,"y":0.8}
+        size_hint:0.3,0.18
+        underline:True
+    
+        # color:(0.612, 0.612, 0.035)
+
+        
+
+        
+    Label:
         text:"Enter your word : "
         font_size:30
         font_name:'Comic'
-        pos_hint:{"x":0.45,"y":0.65}
+        pos_hint:{"x":0.45,"y":0.55}
         size_hint:0.1,0.1
     EnterWord:
         id:a
         multiline:False
-        pos_hint:{"x":0.35,"y":0.45}
+        pos_hint:{"x":0.35,"y":0.4}
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="KnowWindow"
-        pos_hint:{"x":0.2,"y":0.15}
+        pos_hint:{"x":0.2,"y":0.1}
     GreenButton:
         text:"Submit"
         on_press:
@@ -577,7 +671,7 @@ WindowManager:
             root.manager.get_screen('KHyperRes').hypo.text =root.hypo(a.text)
             root.manager.get_screen('KHyperRes').holo.text =root.holo(a.text)
         on_release:app.root.current="KHyperRes"
-        pos_hint:{"x":0.6,"y":0.15}
+        pos_hint:{"x":0.6,"y":0.1}
 <KHyperRes>:
     name:"KHyperRes"
     hypo:hypo
@@ -662,7 +756,7 @@ WindowManager:
 
 <EnterWord@TextInput>:
     font_name:'Comic'
-    font_size:25
+    font_size:15
     size_hint:0.3,0.08
     halign: 'center'
     valign: 'center'
