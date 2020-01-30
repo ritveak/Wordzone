@@ -17,17 +17,15 @@ from nltk.corpus import wordnet
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
-import pyttsx3 
+# import pyttsx3 
 from kivy.core.window import Window
 Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # initialisation 
-engine = pyttsx3.init()
+# engine = pyttsx3.init()
 
 
-class MyGrid(FloatLayout):
-    pass
-
-    # def syn(self,word):
+# class MyGrid(FloatLayout):
+     # def syn(self,word):
 
         
     #     synonyms = [] 
