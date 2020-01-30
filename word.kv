@@ -353,7 +353,7 @@ WindowManager:
         #size_hint:0.2,0.2
         
     Label:
-        text:"Enter the length you desire (optional) :  "
+        text:"Enter the length (optional) :  "
         font_size:30
         font_name:'Comic'
         pos_hint:{"x":0.25,"y":0.3}
@@ -366,7 +366,7 @@ WindowManager:
         id:c
         multiline:False
         pos_hint:{"x":0.65,"y":0.3}
-        hint_text:"blank if no specification"
+        hint_text:"Length of the whole word"
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
@@ -757,8 +757,8 @@ WindowManager:
 <EnterWord@TextInput>:
     font_name:'Comic'
     font_size:15
-    size_hint:0.3,0.08
-    halign: 'center'
+    size_hint:0.3,0.065
+    # halign: 'center'
     valign: 'center'
     multiline:False
     # pos_hint:{"x":,"y":}
@@ -777,13 +777,6 @@ WindowManager:
             size:self.size
             pos:self.pos
             radius:self.border_radius
-    
-
-
-
-
-
-
 
 
 
