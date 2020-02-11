@@ -232,7 +232,7 @@ WindowManager:
     name:"FRhyMeanInput"
     word: a         
     Label:
-        text:"Enter the word whose meaning should resemble with the rhyming word : "
+        text:"Enter the word whose meaning should \nresemble with the rhyming word : "
         font_size:30
         font_name:'Comic'
         pos_hint:{"x":0.45,"y":0.65}
@@ -294,18 +294,148 @@ WindowManager:
 
 <FCrossInput>:
     name:"FCrossInput"
+    w: a
+    l: c
+    Label:
+        text:"Cross Word Helper"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.85}
+        size_hint:0.1,0.1
+        underline:True
+
+    Label:
+        text:"Enter a word that is nearest \nto the description : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.25,"y":0.6}
+        size_hint:0.1,0.1
+        halign:"center"
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.6}
+        hint_text:"Single word"
+       
+        
+    Label:
+        text:"Enter the length :  "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.25,"y":0.4}
+        size_hint:0.1,0.1
+   
+    EnterWord:
+        id:c
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.4}
+        hint_text:"Length of the whole word"
+        #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
         on_release:app.root.current="FindWindow"
         pos_hint:{"x":0.2,"y":0.15}
+
+    GreenButton:
+        text:"Submit"
+        on_press:
+            root.manager.get_screen('FCrossRes').res.text =root.cross(a.text,c.text)
+        on_release:app.root.current="FCrossRes"
+        pos_hint:{"x":0.6,"y":0.15}
+        #size_hint:0.2,0.2
 <FCrossRes>:
     name:"FCrossRes"
+    res:res
+    Output:
+        id:res
+        pos_hint:{"x":0.15,"y":0.2}
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FCrossInput"
+        pos_hint:{"x":0.1,"y":0.05}
+
+    GreenButton:
+        text:"Narrower results"
+        on_release:app.root.current="FCrossNarrow"
+        pos_hint:{"x":0.4,"y":0.04}
+        size_hint:0.2,0.13
+
+
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop()
+        pos_hint:{"x":0.7,"y":0.05}
+
 <FCrossNarrow>:
     name:"FCrossNarrow"
+    w: a
+    l: c
+    Label:
+        text:"Cross Word Helper"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.85}
+        size_hint:0.1,0.1
+        underline:True
+
+    Label:
+        text:"Enter the fixed alphabet : "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.25,"y":0.6}
+        size_hint:0.1,0.1
+        halign:"center"
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.6}
+        hint_text:"Fixed Alphabet eg 'a'"
+       
+        
+    Label:
+        text:"Enter its position :  "
+        font_size:30
+        font_name:'Comic'
+        pos_hint:{"x":0.25,"y":0.4}
+        size_hint:0.1,0.1
+   
+    EnterWord:
+        id:c
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.4}
+        hint_text:"Position of the alphabet"
+        #size_hint:0.2,0.2
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FCrossRes"
+        pos_hint:{"x":0.2,"y":0.15}
+
+    GreenButton:
+        text:"Submit"
+        on_press:
+            root.manager.get_screen('FCrossNarrowRes').res.text =root.narrow(root.manager.get_screen('FCrossRes').res.text,a.text,c.text)
+        on_release:app.root.current="FCrossNarrowRes"
+        pos_hint:{"x":0.6,"y":0.15}
+    
+
 <FCrossNarrowRes>:
     name:"FCrossNarrowRes"
+    res:res
+    Output:
+        id:res
+        pos_hint:{"x":0.15,"y":0.2}
 
-
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FCrossNarrow"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 
 <FScrabbleInput>:
     name:"FScrabbleInput"
@@ -612,7 +742,7 @@ WindowManager:
     GreenButton:
         text:"Submit"
         on_press:
-            root.manager.get_screen('KAntoRes').res.text =root.syn(a.text)
+            root.manager.get_screen('KAntoRes').res.text =root.ant(a.text)
         on_release:app.root.current="KAntoRes"
         pos_hint:{"x":0.6,"y":0.1}
 
@@ -681,12 +811,12 @@ WindowManager:
         text:"Hypernym"
         font_name:"Comic"
         font_size:30
-        pos_hint:{"x":0.1,"y":0.2}
+        pos_hint:{"x":0.1,"y":0.1}
         # size_hint:0.3,0.8
     Label:
         id:hypo
-        pos_hint:{"x":0.1,"y":0.4}
-        size_hint:0.3,0.8
+        pos_hint:{"x":0.1,"y":0.2}
+        size_hint:0.3,0.4
     
     Label:
         text:"Hyponym"
@@ -697,7 +827,7 @@ WindowManager:
     Label:
         id:hyper
         pos_hint:{"x":0.4,"y":0.2}
-        size_hint:0.3,0.8
+        size_hint:0.3,0.4
 
     Label:
         text:"Holonym"
@@ -708,7 +838,7 @@ WindowManager:
     Label:
         id:holo
         pos_hint:{"x":0.7,"y":0.2}
-        size_hint:0.3,0.8
+        size_hint:0.3,0.4
 
     GreenButton:
         text:"Back"
