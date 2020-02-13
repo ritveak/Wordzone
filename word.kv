@@ -257,9 +257,23 @@ WindowManager:
     name:"FRhyMeanRes"
 
     res:res
-    Output:
-        pos_hint:{"x":0.15,"y":0.2}
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0}
+        valign:'center'
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
     GreenButton:
         text:"Back"
         on_release:app.root.current="FRhyMeanInput"
@@ -271,10 +285,35 @@ WindowManager:
 <FRhyDirectRes>:
     name:"FRhyDirectRes"
     res:res
-    Output:
-        pos_hint:{"x":0.15,"y":0.2}
-        id:res
 
+    
+    
+    # Output:
+    #     pos_hint:{"x":0.15,"y":0.2}
+        
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
+            # size_hint_y: None
+            # height: self.texture_size[1]
+    # text_size: self.width, None
+        
+    
+    
         
 
             
@@ -347,9 +386,23 @@ WindowManager:
 <FCrossRes>:
     name:"FCrossRes"
     res:res
-    Output:
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"
@@ -424,9 +477,23 @@ WindowManager:
 <FCrossNarrowRes>:
     name:"FCrossNarrowRes"
     res:res
-    Output:
-        id:res
-        pos_hint:{"x":0.15,"y":0.2}
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.0}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"
@@ -513,9 +580,23 @@ WindowManager:
 <FScrabbleRes>:
     name:"FScrabbleRes"
     res:res
-    Output:
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"
@@ -556,10 +637,23 @@ WindowManager:
 <URes>:
     name:"URes"
     res:res
-    Output:
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
+        
 
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"
@@ -696,9 +790,23 @@ WindowManager:
 <KSynRes>:
     name:"KSynRes"
     res:res
-    Output:
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"
@@ -749,9 +857,23 @@ WindowManager:
 <KAntoRes>:
     name:"KAntoRes"
     res:res
-    Output:
-        id:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
 
     GreenButton:
         text:"Back"

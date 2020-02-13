@@ -437,6 +437,7 @@ class FRhyDirectRes(Screen):
     #     root = ScrollView()
     #     self.add_widget(root)
         
+        
     pass
 class FRhyMeanResDetail(Screen):
     pass
