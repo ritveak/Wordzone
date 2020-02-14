@@ -9,6 +9,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty
+from kivy.uix.image import Image, AsyncImage
 # from kivy.properties import ObjectProperty
 
 import pronouncing
@@ -363,6 +364,8 @@ class FRhyInput(Screen):
 
 class FRhyOpt(Screen):
     def rhy(self,word):
+        if(word==""):
+            return "No word entered"
         fb = pronouncing.rhymes(word)
         if(len(fb)>0):
             ss=set(fb)
@@ -389,6 +392,8 @@ class FRhyOpt(Screen):
             return str
 class FRhyMeanInput(Screen):
     def rhymerdic(self,iword,mword) :
+        if(iword==""):
+            return "No word entered"
         # a proper module separately made for finding rhyming words; also based on cmudict.
         fb = pronouncing.rhymes(iword)
         #Simple synonym set
@@ -463,6 +468,8 @@ class FRhyDirectResDetail(Screen):
 class FCrossInput(Screen):
 
     def cross(self,word,le):
+        if(word==""):
+            return "No word entered"
         #do without position
         if(le.isdigit()):
             leng = int(le)
@@ -526,6 +533,8 @@ class FCrossRes(Screen):
     pass
 class FCrossNarrow(Screen):
     def narrow(self,s,ch,pos):
+        if(s==""):
+            return "No word entered"
         posi= int(pos)-1
         words=s.splitlines( )
         new = ""
@@ -555,6 +564,8 @@ class FScrabbleInput(Screen):
     l = ObjectProperty(None)
 
     def scrabble(self,w,p,l):
+        if(word==""):
+            return "No word entered"
         with open('words_alpha.txt') as word_file:
             english_words = set(word_file.read().split())
         # w=input("Enter the word fragment :")
@@ -626,6 +637,8 @@ class UnderstandWindow(Screen):
     word = ObjectProperty(None)
     def mean(self,word):
         syns = wordnet.synsets(word) 
+        if(word==""):
+            return "No word entered"
         # # An example of a synset: 
         # lemmatizer = WordNetLemmatizer() 
         
@@ -664,6 +677,8 @@ class KHyperInput(Screen):
     word = ObjectProperty(None)
     def hyper(self,word):
         sn=""
+        if(word==""):
+            return "No word entered"
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.hypernyms()#broader category:colour is a hypernym of red.
@@ -684,6 +699,8 @@ class KHyperInput(Screen):
 
     def hypo(self,word):
         sn=""
+        if(word==""):
+            return "No word entered"
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.hyponyms()#broader category:colour is a hypernym of red.
@@ -704,6 +721,8 @@ class KHyperInput(Screen):
     
     def holo(self,word):
         sn=""
+        if(word==""):
+            return "No word entered"
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.member_holonyms()#broader category:colour is a hypernym of red.
@@ -727,7 +746,9 @@ class KSynInput(Screen):
     # ans = ObjectProperty(None)
 
     def syn(self,word):    
-        synonyms = [] 
+        synonyms = []
+        if(word==""):
+            return "No word entered"
 
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas(): 
@@ -760,6 +781,8 @@ class KAntoInput(Screen):
     def ant(self,word):
         
         antonyms = []
+        if(word==""):
+            return "No word entered"
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas():  
                 if l.antonyms(): 
@@ -790,7 +813,8 @@ class KAntoRes(Screen):
 class KHyperRes(Screen):
     pass
 
-
+class pos(Screen):
+    pass
 
 
 class WindowManager(ScreenManager):

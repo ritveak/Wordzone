@@ -36,6 +36,8 @@ WindowManager:
     KHyperInput:
     KHyperRes:
 
+    pos:
+
     
 
 
@@ -581,13 +583,11 @@ WindowManager:
     name:"FScrabbleRes"
     res:res
     ScrollView:
-        
         do_scroll_x: False
         size_hint_y:0.7
         # pos: root.pos
         pos_hint:{"x":0.15,"y":0.2}
         
-
         Output:
             id:res
             font_size: 20
@@ -597,7 +597,6 @@ WindowManager:
             halign: 'center'
             valign: 'center'
                 
-
     GreenButton:
         text:"Back"
         on_release:app.root.current="FScrabbleInput"
@@ -664,6 +663,17 @@ WindowManager:
         on_release:app.root.current=app.stop() 
         pos_hint:{"x":0.6,"y":0.05}
 #Knowledge Zone
+
+<pos>:
+    name:"pos"
+    Image:
+        source :'pos.jpg'
+        size:self.texture_size 
+    GreenButton:
+        text:"Back"
+        on_release:root.current = self.WindowManager.previous()
+        pos_hint:{"x":0.2,"y":0.1}
+
 
 <KnowWindow>:
     name:"KnowWindow"
@@ -790,6 +800,27 @@ WindowManager:
 <KSynRes>:
     name:"KSynRes"
     res:res
+    Label:
+        text:"Results :"
+        font_size:30
+        pos_hint:{"x":-0.15,"y":0.5}
+        size_hint:0.1,0.1
+    Button:
+        text:"i"
+        on_press:app.root.current="pos"
+        pos_hint:{"x":0.8,"y":0.9}
+        size_hint:0.05,0.05
+        background_color:(0,0,0,0)
+        background_normal:''
+        back_color: (0.565, 0.557, 0.698,0.8)
+        border_radius:[35,35,35,35]
+        canvas.before:
+            Color:
+                rgba:self.back_color
+            RoundedRectangle:
+                size:self.size
+                pos:self.pos
+                radius:self.border_radius
     ScrollView:
         
         do_scroll_x: False
@@ -980,6 +1011,7 @@ WindowManager:
         text:"Exit"
         on_release:app.root.current=app.stop() 
         pos_hint:{"x":0.6,"y":0.05}
+
 
 <SmoothButton@Button>:
     background_color:(0,0,0,0)
