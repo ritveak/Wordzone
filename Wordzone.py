@@ -10,6 +10,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty
 # from kivy.properties import ObjectProperty
+
 import pronouncing
 import re
 import sys
@@ -18,6 +19,8 @@ import nltk
 import re
 from nltk.stem import WordNetLemmatizer
 # import pyttsx3 
+from spellchecker import SpellChecker
+spell = SpellChecker()
 from kivy.core.window import Window
 Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # initialisation 
@@ -370,7 +373,20 @@ class FRhyOpt(Screen):
             #print(new) 
             return new
         else:
-            return "No rhyming words were found, try entering a different word."
+            str="No rhyming words were found for '"+word+"'.\n\n"
+            if(spell.correction(word)!=word):
+                    str+="The entered word doesn't exist...\n\n"
+                    if len(spell.candidates(word))>0 :
+                        str+="Go back and try one of these words:\n\n"
+                    for s in spell.candidates(word):
+                        str+=s+"\n"
+            else:
+                if len(spell.candidates(word))>1 :
+                    str+="Go back and try one of these words:\n\n"
+                    for s in spell.candidates(word):
+                        str+=s+"\n"
+            
+            return str
 class FRhyMeanInput(Screen):
     def rhymerdic(self,iword,mword) :
         # a proper module separately made for finding rhyming words; also based on cmudict.
@@ -493,7 +509,15 @@ class FCrossInput(Screen):
 
         # print(crosscount)
         if(crosscount<=0):
-            return "No words were found, try a different word."
+            str="No words were found for the given inputs\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
         else:
             return new
 
@@ -511,7 +535,15 @@ class FCrossNarrow(Screen):
                 new+=w+"\n"
         # print(new)
         if new =="":
-            return "No words were found, try a different word."
+            str="No words were found for the given inputs\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
         return new
 
 class FCrossNarrowRes(Screen):
@@ -610,7 +642,15 @@ class UnderstandWindow(Screen):
                 break;
             ss+="\n"
         if(len(syns)==0):
-            return "No words were found, try entering a different word."
+            str="No words were found for the given inputs\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
         else:
             return ss;
 class URes(Screen):
@@ -632,7 +672,15 @@ class KHyperInput(Screen):
         if(sn!=""):
             return sn
         else:
-            return "No word found"
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
 
     def hypo(self,word):
         sn=""
@@ -644,7 +692,15 @@ class KHyperInput(Screen):
         if(sn!=""):
             return sn
         else:
-            return "No word found"
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
     
     def holo(self,word):
         sn=""
@@ -656,7 +712,15 @@ class KHyperInput(Screen):
         if(sn!=""):
             return sn
         else:
-            return "No word found"
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+        
+            return str
 
 class KSynInput(Screen):
     # word = ObjectProperty(None)
@@ -679,7 +743,15 @@ class KSynInput(Screen):
             return new
         else:
             #print("No synonyms were found, try entering a different word.")
-            return "No synonyms were found, try entering a different word."
+            str="No synonyms were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
 class KSynRes(Screen):
     pass
 
@@ -702,7 +774,15 @@ class KAntoInput(Screen):
                 #add more details like pos and all  
             return new
         else:
-            return "No antonyms were found, try entering a different word."
+            str="No antonymns were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
 class KAntoRes(Screen):
     pass
 
