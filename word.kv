@@ -931,36 +931,46 @@ WindowManager:
     holo:holo
     Label:
         text:"Hypernym"
+        # id:hyper
         font_name:"Comic"
         font_size:30
-        pos_hint:{"x":0.1,"y":0.1}
-        # size_hint:0.3,0.8
+        pos_hint:{"x":-0.3,"y":0.4}
+        # size_hint:0.3,0.1
     Label:
-        id:hypo
-        pos_hint:{"x":0.1,"y":0.2}
-        size_hint:0.3,0.4
+        id:hyper
+        pos_hint:{"x":-0.3,"y":0}
+        font_name:'Roboto'
+        valign: 'center'
+        background_color:(0,0,0,0)
+        background_normal:''
+        back_color: (0.565, 0.557, 0.698,0.8)
+        border_radius:[35,35,35,35]
+        # size_hint:1,1
+        
     
     Label:
         text:"Hyponym"
+        # id:hypo
         font_name:"Comic"
         font_size:30
-        pos_hint:{"x":0.4,"y":0.1}
-        # size_hint:0.3,0.8
+        pos_hint:{"x":0,"y":0.4}
+        # size_hint:0.3,0.1
     Label:
-        id:hyper
-        pos_hint:{"x":0.4,"y":0.2}
-        size_hint:0.3,0.4
+        id:hypo
+        pos_hint:{"x":0,"y":0}
+        # size_hint:0.3,0.4
 
     Label:
         text:"Holonym"
+        # id:holo
         font_name:"Comic"
         font_size:30
-        pos_hint:{"x":0.7,"y":0.1}
-        # size_hint:0.3,0.8
+        pos_hint:{"x":0.3,"y":0.4}
+        # size_hint:0.3,0.1
     Label:
         id:holo
-        pos_hint:{"x":0.7,"y":0.2}
-        size_hint:0.3,0.4
+        pos_hint:{"x":0.3,"y":0}
+        # size_hint:0.3,0.4
 
     GreenButton:
         text:"Back"
