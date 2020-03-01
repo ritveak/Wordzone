@@ -547,11 +547,11 @@ class FCrossNarrow(Screen):
         # print(new)
         if new =="":
             str="No words were found for the given inputs\n\n"
-            if(spell.correction(word)!=word):
+            if(spell.correction(s)!=s):
                 str+="The entered word doesn't exist...\n\n"
-                if len(spell.candidates(word))>0 :
+                if len(spell.candidates(s))>0 :
                     str+="Go back and try one of these words:\n\n"
-                for s in spell.candidates(word):
+                for s in spell.candidates(s):
                     str+=s+"\n"
             
             return str
@@ -566,7 +566,7 @@ class FScrabbleInput(Screen):
     l = ObjectProperty(None)
 
     def scrabble(self,w,p,l):
-        if(word==""):
+        if(w==""):
             return "No word entered"
         with open('words_alpha.txt') as word_file:
             english_words = set(word_file.read().split())
@@ -754,7 +754,7 @@ class KSynInput(Screen):
 
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas(): 
-                synonyms.append(l.name())
+                synonyms.append(l.name()+" - "+syn.pos())
         if(len(synonyms)>0):     
             #print("Synonyms for " + word+" are :\n")
             #print(set(synonyms))
