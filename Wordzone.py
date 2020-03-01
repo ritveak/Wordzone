@@ -399,9 +399,9 @@ class FRhyMeanInput(Screen):
         #Simple synonym set
         rr=[]
         
-        if(mword=="*"):
-            #print(fb)
-            sys.exit()
+        # if(mword=="*"):
+        #     print(fb)
+        #     sys.exit()
         syns=wordnet.synsets(mword)
         for syn in syns:
             rr+=syn.lemma_names()
@@ -450,6 +450,8 @@ class FRhyMeanInput(Screen):
             new += x+"\n"
             #add more details like pos and all
         #print(new) 
+        if(new==""):
+            return "No word found with specified meaning !"
         return new
 class FRhyMeanRes(Screen):
     pass
