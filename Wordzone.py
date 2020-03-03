@@ -28,6 +28,9 @@ Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # engine = pyttsx3.init()
 
 
+
+
+
 # class MyGrid(FloatLayout):
      # def syn(self,word):
 
