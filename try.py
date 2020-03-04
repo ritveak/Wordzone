@@ -354,12 +354,38 @@
 # #     return str
 
 #API for calling datamuse
+
 import requests
-word = "light"
-mean = "literature"
-response =  requests.get("https://api.datamuse.com/words?ml="+mean+"&rel_rhy="+word)
-for a in response.json():
+# word = "light"
+# mean = "literature"
+# response =  requests.get("https://api.datamuse.com/words?ml="+mean+"&rel_rhy="+word)
+# for a in response.json():
+#     print(a["word"])
+
+# word = "indite"
+# response= requests.get("https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/"+word+"?strictMatch=false",headers={"Accept": "application/json","app_id": "c1498ba3","app_key": "ec959282e97d787344cbe7cfeb13c965"})
+# try:
+#     for a in response.json()["results"]:
+#         for b in a["lexicalEntries"][0]["entries"][0]["senses"]:
+#             print("Definition: "+b["definitions"][0])
+    
+#             print("Example: "+b["examples"][0]["text"])
+   
+# except KeyError:
+#     print(response.json()["error"])
+word="Ringing in the ears"
+words=word.split()
+w=""
+for a in words:
+    if(w==""):
+        w+=a
+    else:
+        w+="+"+a
+print(w)
+res= requests.get("https://api.datamuse.com/words?ml="+w)
+for a in res.json():
     print(a["word"])
+    
 
 
 ##WORD FREQUENCY FOR RATING SEARCHES.

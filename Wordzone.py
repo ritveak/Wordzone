@@ -10,6 +10,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty
 from kivy.uix.image import Image, AsyncImage
+import requests
 # from kivy.properties import ObjectProperty
 
 import pronouncing
@@ -481,36 +482,52 @@ class FCrossInput(Screen):
         else:
             return "Enter length"
         rr=[]
-        syns=wordnet.synsets(word)
-        for syn in syns:
-            rr+=syn.lemma_names()
+        # syns=wordnet.synsets(word)
+        # for syn in syns:
+        #     rr+=syn.lemma_names()
 
-        #Since simple synonym set is not enough, lets add more related words 
-        #finding all related words among which rhyming words is to be found
+        # #Since simple synonym set is not enough, lets add more related words 
+        # #finding all related words among which rhyming words is to be found
 
-        hr=[]
-        syns=wordnet.synsets(word)
-        for syn in syns:
-            sn=syn.hypernyms()#broader category:colour is a hypernym of red.
-            an=syn.hyponyms() #narrower category - red : color
-            dn=syn.member_holonyms()#Body is a holonym of arm, leg and heart
-            for s in sn:
-                hr+=s.lemma_names()
-            for a in an:
-                hr+=a.lemma_names()
-            for d in dn:
-                hr+=d.lemma_names()
+        # hr=[]
+        # syns=wordnet.synsets(word)
+        # for syn in syns:
+        #     sn=syn.hypernyms()#broader category:colour is a hypernym of red.
+        #     an=syn.hyponyms() #narrower category - red : color
+        #     dn=syn.member_holonyms()#Body is a holonym of arm, leg and heart
+        #     for s in sn:
+        #         hr+=s.lemma_names()
+        #     for a in an:
+        #         hr+=a.lemma_names()
+        #     for d in dn:
+        #         hr+=d.lemma_names()
                 
-        #now even "loaf" gets included when "food" is given as input
+        # #now even "loaf" gets included when "food" is given as input
 
-        #making the list richer by adding synonyms of the words which are in hr.
+        # #making the list richer by adding synonyms of the words which are in hr.
+        # fn=[]
+        # for h in hr:
+        #     ss=wordnet.synsets(h)
+        #     for s in ss:
+        #         fn+=s.lemma_names()
+
+        # fn = list(dict.fromkeys(fn)) # removing duplicates
+
+        words=word.split()
+        w=""
+        for a in words:
+            if(w==""):
+                w+=a
+            else:
+                w+="+"+a
+        # print(w)
         fn=[]
-        for h in hr:
-            ss=wordnet.synsets(h)
-            for s in ss:
-                fn+=s.lemma_names()
+        res= requests.get("https://api.datamuse.com/words?ml="+w)
+        for a in res.json():
+            fn.append(a["word"])
+            
 
-        fn = list(dict.fromkeys(fn)) # removing duplicates
+
         crosscount = 0
         new =""
         for l in fn:
@@ -641,7 +658,7 @@ class FScrabbleRes(Screen):
 class UnderstandWindow(Screen):
     word = ObjectProperty(None)
     def mean(self,word):
-        syns = wordnet.synsets(word) 
+        
         if(word==""):
             return "No word entered"
         # # An example of a synset: 
@@ -650,17 +667,29 @@ class UnderstandWindow(Screen):
         # #print("Root word :", lemmatizer.lemmatize(syns[0].lemma_names()[0]))
         # Just the word: 
         # #print("Your word : "+ word)
-        ss=""
-        for l in syns:
-            ss+="Meaning : "+l.definition()+"\n"
+
+
+        # syns = wordnet.synsets(word) 
+        # ss=""
+        # for l in syns:
+        #     ss+="Meaning : "+l.definition()+"\n"
             
-            for e in l.examples() :
-                ss+="Example: "
-                ss+=e+"\n"
-                break;
-            ss+="\n"
-        if(len(syns)==0):
-            str="No words were found for the given inputs\n\n"
+        #     for e in l.examples() :
+        #         ss+="Example: "
+        #         ss+=e+"\n"
+        #         break;
+        #     ss+="\n"
+        str=""
+        response= requests.get("https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/"+word+"?strictMatch=false",headers={"Accept": "application/json","app_id": "c1498ba3","app_key": "ec959282e97d787344cbe7cfeb13c965"})
+        try:
+            for a in response.json()["results"]:
+                for b in a["lexicalEntries"][0]["entries"][0]["senses"]:
+                    str+="Definition:\n "+b["definitions"][0]+"\n"
+                    str+="Example: \n"+b["examples"][0]["text"]+"\n\n"
+
+   
+        except KeyError:
+            str="No meanings were found for the given inputs\n\n"
             if(spell.correction(word)!=word):
                 str+="The entered word doesn't exist...\n\n"
                 if len(spell.candidates(word))>0 :
@@ -668,9 +697,8 @@ class UnderstandWindow(Screen):
                 for s in spell.candidates(word):
                     str+=s+"\n"
             
-            return str
-        else:
-            return ss;
+        return str
+        
 class URes(Screen):
     pass
 
@@ -757,7 +785,7 @@ class KSynInput(Screen):
 
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas(): 
-                synonyms.append(l.name()+" - "+syn.pos())
+                synonyms.append(l.name())
         if(len(synonyms)>0):     
             #print("Synonyms for " + word+" are :\n")
             #print(set(synonyms))
@@ -818,8 +846,8 @@ class KAntoRes(Screen):
 class KHyperRes(Screen):
     pass
 
-class pos(Screen):
-    pass
+# class pos(Screen):
+#     pass
 
 
 class WindowManager(ScreenManager):

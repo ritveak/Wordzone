@@ -36,7 +36,7 @@ WindowManager:
     KHyperInput:
     KHyperRes:
 
-    pos:
+    # pos:
 
     
 
@@ -647,11 +647,16 @@ WindowManager:
         Output:
             id:res
             font_size: 20
+            # text_size:self.size 
             # text_size: self.width, None
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
             size_hint_y:None
             height: self.texture_size[1]
             halign: 'center'
             valign: 'center'
+            padding_y:20
                 
 
     GreenButton:
@@ -664,15 +669,15 @@ WindowManager:
         pos_hint:{"x":0.6,"y":0.05}
 #Knowledge Zone
 
-<pos>:
-    name:"pos"
-    Image:
-        source :'pos.jpg'
-        size:self.texture_size 
-    GreenButton:
-        text:"Back"
-        on_release:root.current = app.root.current="KSynRes"
-        pos_hint:{"x":0.2,"y":0.1}
+# <pos>:
+#     name:"pos"
+#     Image:
+#         source :'pos.jpg'
+#         size:self.texture_size 
+#     GreenButton:
+#         text:"Back"
+#         on_release:root.current = app.root.current="KSynRes"
+#         pos_hint:{"x":0.2,"y":0.1}
 
 
 <KnowWindow>:
@@ -805,22 +810,22 @@ WindowManager:
         font_size:30
         pos_hint:{"x":-0.15,"y":0.5}
         size_hint:0.1,0.1
-    Button:
-        text:"i"
-        on_press:app.root.current="pos"
-        pos_hint:{"x":0.8,"y":0.9}
-        size_hint:0.05,0.05
-        background_color:(0,0,0,0)
-        background_normal:''
-        back_color: (0.565, 0.557, 0.698,0.8)
-        border_radius:[35,35,35,35]
-        canvas.before:
-            Color:
-                rgba:self.back_color
-            RoundedRectangle:
-                size:self.size
-                pos:self.pos
-                radius:self.border_radius
+    # Button:
+    #     text:"i"
+    #     on_press:app.root.current="pos"
+    #     pos_hint:{"x":0.8,"y":0.9}
+    #     size_hint:0.05,0.05
+    #     background_color:(0,0,0,0)
+    #     background_normal:''
+    #     back_color: (0.565, 0.557, 0.698,0.8)
+    #     border_radius:[35,35,35,35]
+    #     canvas.before:
+    #         Color:
+    #             rgba:self.back_color
+    #         RoundedRectangle:
+    #             size:self.size
+    #             pos:self.pos
+    #             radius:self.border_radius
     ScrollView:
         
         do_scroll_x: False
