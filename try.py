@@ -373,34 +373,41 @@ import requests
    
 # except KeyError:
 #     print(response.json()["error"])
-word="Ringing in the ears"
-words=word.split()
-w=""
-for a in words:
-    if(w==""):
-        w+=a
-    else:
-        w+="+"+a
-print(w)
-res= requests.get("https://api.datamuse.com/words?ml="+w)
-for a in res.json():
-    print(a["word"])
+# word="Ringing in the ears"
+# words=word.split()
+# w=""
+# for a in words:
+#     if(w==""):
+#         w+=a
+#     else:
+#         w+="+"+a
+# print(w)
+# res= requests.get("https://api.datamuse.com/words?ml="+w)
+# for a in res.json():
+#     print(a["word"])
     
 
 
 ##WORD FREQUENCY FOR RATING SEARCHES.
-# from wordfreq import word_frequency
-# from wordfreq import zipf_frequency
-# from wordfreq import top_n_list
-# from wordfreq import iter_wordlist
-# # print(word_frequency('cafe', 'en'))
-# # print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
-# print(zipf_frequency('the', 'en'))
-# print(zipf_frequency('of', 'en'))
-# print(zipf_frequency('and', 'en'))
-# print(zipf_frequency('mozambique', 'en'))
-# print(zipf_frequency('cumbersome', 'en'))
+from wordfreq import word_frequency
+from wordfreq import zipf_frequency
+from wordfreq import top_n_list
+from wordfreq import iter_wordlist
+from wordfreq import get_frequency_dict
+print(word_frequency('cafe', 'en'))
+print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
+print(zipf_frequency('cafe', 'en'))
+print(zipf_frequency('of', 'en'))
+print(zipf_frequency('and', 'en'))
+print(zipf_frequency('mozambique', 'en'))
+print(zipf_frequency('cumbersome', 'en'))
 
 # print(top_n_list('en', 10))
 
-# print(iter_wordlist('en'))
+# count=0
+# for a in get_frequency_dict('en'):
+#     count+=1
+#     if(count<10):
+#         print(a)
+#     else:
+#         break
