@@ -455,7 +455,14 @@ class FRhyMeanInput(Screen):
             #add more details like pos and all
         #print(new) 
         if(new==""):
-            return "No word found with specified meaning !"
+            str="No rhyming words were found for specified meaning \n\n"
+            if(spell.correction(mword)!=mword):
+                    str+="The entered word doesn't exist...\n\n"
+                    if len(spell.candidates(mword))>0 :
+                        str+="Go back and try one of these words:\n\n"
+                    for s in spell.candidates(mword):
+                        str+=s+"\n"
+            return str
         return new
 class FRhyMeanRes(Screen):
     pass
@@ -513,6 +520,7 @@ class FCrossInput(Screen):
 
         # fn = list(dict.fromkeys(fn)) # removing duplicates
 
+        #Splitting the words and putting them in the API's format
         words=word.split()
         w=""
         for a in words:
@@ -520,24 +528,25 @@ class FCrossInput(Screen):
                 w+=a
             else:
                 w+="+"+a
-        # print(w)
+        #Hence the "ringing in ears" turns into "ringing+in+ears"
+
         fn=[]
         res= requests.get("https://api.datamuse.com/words?ml="+w)
         for a in res.json():
             fn.append(a["word"])
             
+        #The words related to description are stored in fn now.
+        
+            
 
-
-        crosscount = 0
+        #Finding words with defined length
         new =""
         for l in fn:
             if len(l) == leng:
-                # print(l+"\n")
                 new+=l+"\n"
-                crosscount+=1
 
-        # print(crosscount)
-        if(crosscount<=0):
+        #returning error messages if no words are found.
+        if(new==""):
             str="No words were found for the given inputs\n\n"
             if(spell.correction(word)!=word):
                 str+="The entered word doesn't exist...\n\n"
@@ -590,35 +599,36 @@ class FScrabbleInput(Screen):
             return "No word entered"
         with open('words_alpha.txt') as word_file:
             english_words = set(word_file.read().split())
-        # w=input("Enter the word fragment :")
-        # p=input("Enter its position : /n(^ for starting and $ for end, blank for anywhere) ")
-        # l=input("Enter the length you desire :(blank if no specification)")
+
         st=w
         if(w==""):
             return "No Input"
+
+        #Generating regex expression for all the cases:    
         if(p=="^"):
             st="^"+w
             if(l.isdigit()):
                 le=int(l)-len(w)
                 if(le>0):
                     st = st+".{"+str(le)+"}"
-                # else:
-                #     #print("Word Length can't be lesser that the fragment length.")
+                else:
+                    return "Word Length can't be lesser that the fragment length."
+
         elif (p=="$"):
             st=w+"$"
             if(l.isdigit()):
                 le=int(l)-len(w)
                 if(le>0):
                     st = ".{"+str(le)+"}"+st
-                # else:
-                #     #print("Word Length can't be lesser that the fragment length.")
+                else:
+                    return "Word Length can't be lesser that the fragment length."
         elif(p==""):
             if(l.isdigit()):
                 le=int(l)-len(w)
                 if(le>0):
                     st = ".*"+w+".*"
-                # else:
-                #     #print("Word Length can't be lesser that the fragment length.")
+                else:
+                    return "Word Length can't be lesser that the fragment length."
 
         elif(p.isdigit()):
             pp = int(p)-1
@@ -627,14 +637,8 @@ class FScrabbleInput(Screen):
                 le=int(l)-len(w) - pp
                 if(le>0):
                     st = st+".{"+str(le)+"}"
-                # else:
-                #     #print("Word Length can't be lesser that the fragment length.")
-        # else:
-        #     #print("Invalid position")
 
-
-        # #print(st)
-        
+        #matching and finding the words that contain the specified fragment in the specified position
         reg = re.compile(st)
         match=list(filter(reg.match,english_words))
         new =""
@@ -642,9 +646,7 @@ class FScrabbleInput(Screen):
             if(l.isdigit()):
                 if(len(word)==int(l)):
                     new+=word+"\n"
-                    #print(word)
             else:
-                #print(word)
                 new+=word+"\n"
         if(new==""):
             return "No words were found, try entering different parameters."
