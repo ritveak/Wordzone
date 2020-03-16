@@ -477,8 +477,44 @@ class FRhyMeanResDetail(Screen):
     pass
 class FRhyDirectResDetail(Screen):
     pass
+class FCrossOpt(Screen):
+    pass
+class FCrossDoubleInput(Screen):
+    def cross(self,across,apos,alen,down,dpos,dlen):
+        words=across.split()
+        a=""
+        for w in words:
+            if(a==""):
+                a+=w
+            else:
+                a+="+"+w
+        words=down.split()
+        d=""
+        for w in words:
+            if(d==""):
+                d+=w
+            else:
+                d+="+"+w
 
-class FCrossInput(Screen):
+        ap=int(apos)
+        al=int(alen)
+        dp=int(dpos)
+        dl=int(dlen)
+
+        ares= requests.get("https://api.datamuse.com/words?ml="+a)
+        dres = requests.get("https://api.datamuse.com/words?ml="+d)
+        fn=""
+        for a in ares.json():
+            if(len(a["word"])==al):
+                for d in dres.json():
+                    if(len(d["word"])==dl):
+                        if(a["word"][ap]==d["word"][dp]):
+                            fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\n\n"
+        return fn
+
+class FCrossDoubleRes(Screen):
+    pass
+class FCrossSingleInput(Screen):
 
     def cross(self,word,le):
         if(word==""):
@@ -560,7 +596,7 @@ class FCrossInput(Screen):
             return new
 
 
-class FCrossRes(Screen):
+class FCrossSingleRes(Screen):
     pass
 class FCrossNarrow(Screen):
     def narrow(self,s,ch,pos):
@@ -708,73 +744,6 @@ class URes(Screen):
 class KnowWindow(Screen):
     pass
 
-class KHyperInput(Screen):
-    word = ObjectProperty(None)
-    def hyper(self,word):
-        sn=""
-        if(word==""):
-            return "No word entered"
-        syns=wordnet.synsets(word)
-        for syn in syns:
-            s=syn.hypernyms()#broader category:colour is a hypernym of red.
-            for q in s:
-                sn+=q.lemma_names()[0]+"\n"
-        if(sn!=""):
-            return sn
-        else:
-            str="No words were found for the given input\n\n"
-            if(spell.correction(word)!=word):
-                str+="The entered word doesn't exist...\n\n"
-                if len(spell.candidates(word))>0 :
-                    str+="Go back and try one of these words:\n\n"
-                for s in spell.candidates(word):
-                    str+=s+"\n"
-            
-            return str
-
-    def hypo(self,word):
-        sn=""
-        if(word==""):
-            return "No word entered"
-        syns=wordnet.synsets(word)
-        for syn in syns:
-            s=syn.hyponyms()#broader category:colour is a hypernym of red.
-            for q in s:
-                sn+=q.lemma_names()[0]+"\n"
-        if(sn!=""):
-            return sn
-        else:
-            str="No words were found for the given input\n\n"
-            if(spell.correction(word)!=word):
-                str+="The entered word doesn't exist...\n\n"
-                if len(spell.candidates(word))>0 :
-                    str+="Go back and try one of these words:\n\n"
-                for s in spell.candidates(word):
-                    str+=s+"\n"
-            
-            return str
-    
-    def holo(self,word):
-        sn=""
-        if(word==""):
-            return "No word entered"
-        syns=wordnet.synsets(word)
-        for syn in syns:
-            s=syn.member_holonyms()#broader category:colour is a hypernym of red.
-            for q in s:
-                sn+=q.lemma_names()[0]+"\n"
-        if(sn!=""):
-            return sn
-        else:
-            str="No words were found for the given input\n\n"
-            if(spell.correction(word)!=word):
-                str+="The entered word doesn't exist...\n\n"
-                if len(spell.candidates(word))>0 :
-                    str+="Go back and try one of these words:\n\n"
-                for s in spell.candidates(word):
-                    str+=s+"\n"
-        
-            return str
 
 class KSynInput(Screen):
     # word = ObjectProperty(None)
@@ -844,7 +813,74 @@ class KAntoInput(Screen):
 class KAntoRes(Screen):
     pass
 
+class KHyperInput(Screen):
+    word = ObjectProperty(None)
+    def hyper(self,word):
+        sn=""
+        if(word==""):
+            return "No word entered"
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.hypernyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
+
+    def hypo(self,word):
+        sn=""
+        if(word==""):
+            return "No word entered"
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.hyponyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+            
+            return str
     
+    def holo(self,word):
+        sn=""
+        if(word==""):
+            return "No word entered"
+        syns=wordnet.synsets(word)
+        for syn in syns:
+            s=syn.member_holonyms()#broader category:colour is a hypernym of red.
+            for q in s:
+                sn+=q.lemma_names()[0]+"\n"
+        if(sn!=""):
+            return sn
+        else:
+            str="No words were found for the given input\n\n"
+            if(spell.correction(word)!=word):
+                str+="The entered word doesn't exist...\n\n"
+                if len(spell.candidates(word))>0 :
+                    str+="Go back and try one of these words:\n\n"
+                for s in spell.candidates(word):
+                    str+=s+"\n"
+        
+            return str
+
 class KHyperRes(Screen):
     pass
 

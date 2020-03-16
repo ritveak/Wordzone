@@ -12,8 +12,11 @@ WindowManager:
     FRhyMeanResDetail:
     FRhyDirectResDetail:
 
-    FCrossInput:
-    FCrossRes:
+    FCrossOpt:
+    FCrossSingleInput:
+    FCrossSingleRes:
+    FCrossDoubleInput:
+    FCrossDoubleRes:
     FCrossNarrow:
     FCrossNarrowRes:
 
@@ -137,7 +140,7 @@ WindowManager:
     SmoothButton:
         text:"Crossword\nHelper"
         
-        on_release:app.root.current="FCrossInput"
+        on_release:app.root.current="FCrossOpt"
         pos_hint:{"x":0.4,"y":0.35}
         size_hint:0.2,0.2
         font_size:20
@@ -332,9 +335,165 @@ WindowManager:
     name:"FRhyMeanResDetail"
 <FRhyDirectResDetail>:
     name:"FRhyDirectResDetail"
+<FCrossOpt>:
+    name:"FCrossOpt"
+    Label:
+        text:"CROSSWORD HELPER !"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.8}
+        size_hint:0.1,0.1
+        underline:True
+    
+    SmoothButton:
+        text:"Single\nWord"
+        
+        on_release:app.root.current="FCrossSingleInput"
+        pos_hint:{"x":0.2,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border:0.1,0.1,0.2,0.4
 
-<FCrossInput>:
-    name:"FCrossInput"
+    SmoothButton:
+        text:"Two\nwords"
+        
+        on_release:app.root.current="FCrossDoubleInput"
+        pos_hint:{"x":0.6,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border:0.1,0.1,0.2,0.4
+<FCrossDoubleInput>:
+    name:"FCrossDoubleInput"
+    across: a
+    apos: ap
+    alen: al
+    down: d
+    dpos: dp 
+    dlen: dl
+    Label:
+        text:"Cross Word Helper"
+        font_size:35
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.85}
+        size_hint:0.1,0.1
+        underline:True
+
+    Label:
+        text:"Across"
+        font_size:25
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.7}
+        size_hint:0.1,0.1
+        halign:"center"
+        
+    EnterWord:
+        id:a
+        multiline:False
+        pos_hint:{"x":0.05,"y":0.6}
+        hint_text:"Enter Description"
+   
+    EnterWord:
+        id:ap
+        multiline:False
+        pos_hint:{"x":0.35,"y":0.6}
+        hint_text:"Shared Position"
+
+    EnterWord:
+        id:al
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.6}
+        hint_text:"Length "
+
+    Label:
+        text:"Down"
+        font_size:25
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.45}
+        size_hint:0.1,0.1
+        halign:"center"
+        
+    EnterWord:
+        id:d
+        multiline:False
+        pos_hint:{"x":0.05,"y":0.35}
+        hint_text:"Enter Description"
+   
+    EnterWord:
+        id:dp
+        multiline:False
+        pos_hint:{"x":0.35,"y":0.35}
+        hint_text:"Shared Position"
+
+    EnterWord:
+        id:dl
+        multiline:False
+        pos_hint:{"x":0.65,"y":0.35}
+        hint_text:"Length "
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.2,"y":0.15}
+
+    GreenButton:
+        text:"Submit"
+        on_press:
+            root.manager.get_screen('FCrossDoubleRes').res.text =root.cross(a.text,ap.text,al.text,d.text,dp.text,dl.text)
+        on_release:app.root.current="FCrossDoubleRes"
+        pos_hint:{"x":0.6,"y":0.15}
+
+<FCrossDoubleRes>:
+    name:"FCrossDoubleRes"
+    res:res
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size: self.width, None
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+                
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FCrossDoubleInput"
+        pos_hint:{"x":0.1,"y":0.05}
+
+    # GreenButton:
+    #     text:"Narrower results"
+    #     on_release:app.root.current="FCrossNarrow"
+    #     pos_hint:{"x":0.4,"y":0.04}
+    #     size_hint:0.2,0.13
+
+
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop()
+        pos_hint:{"x":0.7,"y":0.05}
+
+<FCrossSingleInput>:
+    name:"FCrossSingleInput"
     w: a
     l: c
     Label:
@@ -375,18 +534,18 @@ WindowManager:
         #size_hint:0.2,0.2
     GreenButton:
         text:"Back"
-        on_release:app.root.current="FindWindow"
+        on_release:app.root.current="FCrossOpt"
         pos_hint:{"x":0.2,"y":0.15}
 
     GreenButton:
         text:"Submit"
         on_press:
-            root.manager.get_screen('FCrossRes').res.text =root.cross(a.text,c.text)
-        on_release:app.root.current="FCrossRes"
+            root.manager.get_screen('FCrossSingleRes').res.text =root.cross(a.text,c.text)
+        on_release:app.root.current="FCrossSingleRes"
         pos_hint:{"x":0.6,"y":0.15}
         #size_hint:0.2,0.2
-<FCrossRes>:
-    name:"FCrossRes"
+<FCrossSingleRes>:
+    name:"FCrossSingleRes"
     res:res
     ScrollView:
         
@@ -408,7 +567,7 @@ WindowManager:
 
     GreenButton:
         text:"Back"
-        on_release:app.root.current="FCrossInput"
+        on_release:app.root.current="FCrossSingleInput"
         pos_hint:{"x":0.1,"y":0.05}
 
     GreenButton:
@@ -471,7 +630,7 @@ WindowManager:
     GreenButton:
         text:"Submit"
         on_press:
-            root.manager.get_screen('FCrossNarrowRes').res.text =root.narrow(root.manager.get_screen('FCrossRes').res.text,a.text,c.text)
+            root.manager.get_screen('FCrossNarrowRes').res.text =root.narrow(root.manager.get_screen('FCrossSingleRes').res.text,a.text,c.text)
         on_release:app.root.current="FCrossNarrowRes"
         pos_hint:{"x":0.6,"y":0.15}
     

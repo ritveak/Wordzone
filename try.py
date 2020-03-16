@@ -373,7 +373,13 @@ import requests
    
 # except KeyError:
 #     print(response.json()["error"])
-# word="Ringing in the ears"
+
+across=input("Across - ")
+apos = int(input("Across common position - "))
+alen = int(input("Across length - "))
+down = input("Down - ")
+dpos = int(input("Down common position - "))
+dlen = int(input("Down length - "))
 # words=word.split()
 # w=""
 # for a in words:
@@ -382,25 +388,34 @@ import requests
 #     else:
 #         w+="+"+a
 # print(w)
-# res= requests.get("https://api.datamuse.com/words?ml="+w)
-# for a in res.json():
-#     print(a["word"])
+
+ares= requests.get("https://api.datamuse.com/words?ml="+across)
+dres = requests.get("https://api.datamuse.com/words?ml="+down)
+fn=""
+for a in ares.json():
+    if(len(a["word"])==alen):
+        for d in dres.json():
+            if(len(d["word"])==dlen):
+                if(a["word"][apos]==d["word"][dpos]):
+                    fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\nor\n"
+
+print(fn)
     
 
 
 ##WORD FREQUENCY FOR RATING SEARCHES.
-from wordfreq import word_frequency
-from wordfreq import zipf_frequency
-from wordfreq import top_n_list
-from wordfreq import iter_wordlist
-from wordfreq import get_frequency_dict
-print(word_frequency('cafe', 'en'))
-print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
-print(zipf_frequency('cafe', 'en'))
-print(zipf_frequency('of', 'en'))
-print(zipf_frequency('and', 'en'))
-print(zipf_frequency('mozambique', 'en'))
-print(zipf_frequency('cumbersome', 'en'))
+# from wordfreq import word_frequency
+# from wordfreq import zipf_frequency
+# from wordfreq import top_n_list
+# from wordfreq import iter_wordlist
+# from wordfreq import get_frequency_dict
+# print(word_frequency('cafe', 'en'))
+# print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
+# print(zipf_frequency('cafe', 'en'))
+# print(zipf_frequency('of', 'en'))
+# print(zipf_frequency('and', 'en'))
+# print(zipf_frequency('mozambique', 'en'))
+# print(zipf_frequency('cumbersome', 'en'))
 
 # print(top_n_list('en', 10))
 
