@@ -24,6 +24,10 @@ from nltk.stem import WordNetLemmatizer
 from spellchecker import SpellChecker
 spell = SpellChecker()
 from kivy.core.window import Window
+import pandas as pd
+import os
+import pickle
+from wordfreq import word_frequency
 Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # initialisation 
 # engine = pyttsx3.init()
@@ -370,6 +374,20 @@ class FRhyOpt(Screen):
     def rhy(self,word):
         if(word==""):
             return "No word entered"
+
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f)
+            dataset_low_level.append(word_frequency('cafe', 'en'))
+            with open ('./data/low.pkl', 'wb') as f:
+                pickle.dump(dataset_low_level, f)
+
+            
+        else:
+            dataset_low_level = [word_frequency('cafe', 'en')]
+            with open ('./data/low.pkl', 'wb') as f:
+                pickle.dump(dataset_low_level, f)
+        
         fb = pronouncing.rhymes(word)
         if(len(fb)>0):
             ss=set(fb)
