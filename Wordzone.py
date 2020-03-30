@@ -27,7 +27,7 @@ from kivy.core.window import Window
 import pandas as pd
 import os
 import pickle
-from wordfreq import word_frequency
+from wordfreq import zipf_frequency
 Window.clearcolor = (0.259, 0.251, 0.447,0.9)
 # initialisation 
 # engine = pyttsx3.init()
@@ -375,25 +375,35 @@ class FRhyOpt(Screen):
         if(word==""):
             return "No word entered"
 
-        if os.path.exists('./data/low.pkl'):
-            with open ('./data/low.pkl', 'rb') as f:
-                dataset_low_level = pickle.load(f)
-            dataset_low_level.append(word_frequency('cafe', 'en'))
-            with open ('./data/low.pkl', 'wb') as f:
-                pickle.dump(dataset_low_level, f)
-
             
-        else:
-            dataset_low_level = [word_frequency('cafe', 'en')]
-            with open ('./data/low.pkl', 'wb') as f:
-                pickle.dump(dataset_low_level, f)
         
         fb = pronouncing.rhymes(word)
         if(len(fb)>0):
             ss=set(fb)
-            new = "" 
-            for x in ss: 
-                new += x+"\n"
+            new=""
+            if os.path.exists('./data/high.pkl'):
+                with open ('./data/high.pkl', 'rb') as f:
+                    dataset_high_level = pickle.load(f)
+                for x in ss: 
+                    new += x+"\n"
+                    if(zipf_frequency(x, 'en')<4 and zipf_frequency(x , 'en')> 0.5):
+                        dataset_high_level.append(zipf_frequency(x, 'en'))
+                with open ('./data/high.pkl', 'wb') as f:
+                    pickle.dump(dataset_high_level, f)
+
+                
+            else:
+                dataset_high_level = []
+                for x in ss: 
+                    new += x+"\n"
+                    if(zipf_frequency(x, 'en')<4 and zipf_frequency(x, 'en')> 0.5):
+                        dataset_high_level.append(zipf_frequency(x, 'en'))
+                with open ('./data/high.pkl', 'wb') as f:
+                    pickle.dump(dataset_high_level, f)
+            
+            
+            
+            
                 #add more details like pos and all
             #print(new) 
             return new
@@ -468,8 +478,26 @@ class FRhyMeanInput(Screen):
         fo=list(set(fo))
 
         new = "" 
-        for x in fo: 
-            new += x+"\n"
+         
+        if os.path.exists('./data/high.pkl'):
+            with open ('./data/high.pkl', 'rb') as f:
+                dataset_high_level = pickle.load(f)
+            for x in fo: 
+                new += x+"\n"
+                if(zipf_frequency(x, 'en')<4 and zipf_frequency(x , 'en')>0.5):
+                    dataset_high_level.append(zipf_frequency(x, 'en'))
+            with open ('./data/high.pkl', 'wb') as f:
+                pickle.dump(dataset_high_level, f)
+
+            
+        else:
+            dataset_high_level = []
+            for x in fo: 
+                new += x+"\n"
+                if(zipf_frequency(x, 'en')<4 and zipf_frequency(x , 'en')> 0.5):
+                    dataset_high_level.append(zipf_frequency(x, 'en'))
+            with open ('./data/high.pkl', 'wb') as f:
+                pickle.dump(dataset_high_level, f)
             #add more details like pos and all
         #print(new) 
         if(new==""):
@@ -522,12 +550,28 @@ class FCrossDoubleInput(Screen):
         ares= requests.get("https://api.datamuse.com/words?ml="+a)
         dres = requests.get("https://api.datamuse.com/words?ml="+d)
         fn=""
+        if os.path.exists('./data/high.pkl'):
+            with open ('./data/high.pkl', 'rb') as f:
+                dataset_high_level = pickle.load(f)
+
+        else:
+            dataset_high_level = []
+
+
+
         for a in ares.json():
             if(len(a["word"])==al):
                 for d in dres.json():
                     if(len(d["word"])==dl):
                         if(a["word"][ap]==d["word"][dp]):
+                            if(zipf_frequency(a["word"] , 'en')<4 and zipf_frequency(a["word"] , 'en')> 0.5):
+                                dataset_high_level.append(zipf_frequency(a["word"] , 'en'))
+                            if(zipf_frequency(d["word"] , 'en')<4 and zipf_frequency(d["word"] , 'en')> 0.5):
+                                dataset_high_level.append(zipf_frequency(d["word"] , 'en'))
                             fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\n\n"
+                            
+        with open ('./data/high.pkl', 'wb') as f:
+                pickle.dump(dataset_high_level, f)
         return fn
 
 class FCrossDoubleRes(Screen):
@@ -543,38 +587,6 @@ class FCrossSingleInput(Screen):
         else:
             return "Enter length"
         rr=[]
-        # syns=wordnet.synsets(word)
-        # for syn in syns:
-        #     rr+=syn.lemma_names()
-
-        # #Since simple synonym set is not enough, lets add more related words 
-        # #finding all related words among which rhyming words is to be found
-
-        # hr=[]
-        # syns=wordnet.synsets(word)
-        # for syn in syns:
-        #     sn=syn.hypernyms()#broader category:colour is a hypernym of red.
-        #     an=syn.hyponyms() #narrower category - red : color
-        #     dn=syn.member_holonyms()#Body is a holonym of arm, leg and heart
-        #     for s in sn:
-        #         hr+=s.lemma_names()
-        #     for a in an:
-        #         hr+=a.lemma_names()
-        #     for d in dn:
-        #         hr+=d.lemma_names()
-                
-        # #now even "loaf" gets included when "food" is given as input
-
-        # #making the list richer by adding synonyms of the words which are in hr.
-        # fn=[]
-        # for h in hr:
-        #     ss=wordnet.synsets(h)
-        #     for s in ss:
-        #         fn+=s.lemma_names()
-
-        # fn = list(dict.fromkeys(fn)) # removing duplicates
-
-        #Splitting the words and putting them in the API's format
         words=word.split()
         w=""
         for a in words:
@@ -595,9 +607,21 @@ class FCrossSingleInput(Screen):
 
         #Finding words with defined length
         new =""
+        if os.path.exists('./data/high.pkl'):
+            with open ('./data/high.pkl', 'rb') as f:
+                dataset_high_level = pickle.load(f) 
+
+        else:
+            dataset_high_level = []
+
         for l in fn:
             if len(l) == leng:
                 new+=l+"\n"
+                if(zipf_frequency(l, 'en')<4 and zipf_frequency(l , 'en')> 0.5):
+                    dataset_high_level.append(zipf_frequency(l, 'en'))
+        with open ('./data/high.pkl', 'wb') as f:
+            pickle.dump(dataset_high_level, f)
+                
 
         #returning error messages if no words are found.
         if(new==""):
@@ -696,12 +720,26 @@ class FScrabbleInput(Screen):
         reg = re.compile(st)
         match=list(filter(reg.match,english_words))
         new =""
+
+        if os.path.exists('./data/high.pkl'):
+            with open ('./data/high.pkl', 'rb') as f:
+                dataset_high_level = pickle.load(f) 
+
+        else:
+            dataset_high_level = []
+
         for word in match:
             if(l.isdigit()):
                 if(len(word)==int(l)):
                     new+=word+"\n"
+                    if(zipf_frequency(word, 'en')<4 and zipf_frequency(word , 'en')> 0.5):
+                        dataset_high_level.append(zipf_frequency(word, 'en'))
             else:
                 new+=word+"\n"
+                if(zipf_frequency(word, 'en')<4 and zipf_frequency(word , 'en')> 0.5):
+                        dataset_high_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/high.pkl', 'wb') as f:
+                pickle.dump(dataset_high_level, f)
         if(new==""):
             return "No words were found, try entering different parameters."
         else:
@@ -717,6 +755,19 @@ class UnderstandWindow(Screen):
         
         if(word==""):
             return "No word entered"
+
+        if os.path.exists('./data/mid.pkl'):
+            with open ('./data/mid.pkl', 'rb') as f:
+                dataset_mid_level = pickle.load(f) 
+
+        else:
+            dataset_mid_level = []
+
+        if(zipf_frequency(word, 'en')>4 and zipf_frequency(word , 'en')<6):
+                dataset_mid_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/mid.pkl', 'wb') as f:
+            pickle.dump(dataset_mid_level, f)
+
         # # An example of a synset: 
         # lemmatizer = WordNetLemmatizer() 
         

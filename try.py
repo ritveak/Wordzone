@@ -355,7 +355,7 @@
 
 #API for calling datamuse
 
-import requests
+# import requests
 # word = "light"
 # mean = "literature"
 # response =  requests.get("https://api.datamuse.com/words?ml="+mean+"&rel_rhy="+word)
@@ -374,12 +374,12 @@ import requests
 # except KeyError:
 #     print(response.json()["error"])
 
-across=input("Across - ")
-apos = int(input("Across common position - "))
-alen = int(input("Across length - "))
-down = input("Down - ")
-dpos = int(input("Down common position - "))
-dlen = int(input("Down length - "))
+# across=input("Across - ")
+# apos = int(input("Across common position - "))
+# alen = int(input("Across length - "))
+# down = input("Down - ")
+# dpos = int(input("Down common position - "))
+# dlen = int(input("Down length - "))
 # words=word.split()
 # w=""
 # for a in words:
@@ -389,17 +389,17 @@ dlen = int(input("Down length - "))
 #         w+="+"+a
 # print(w)
 
-ares= requests.get("https://api.datamuse.com/words?ml="+across)
-dres = requests.get("https://api.datamuse.com/words?ml="+down)
-fn=""
-for a in ares.json():
-    if(len(a["word"])==alen):
-        for d in dres.json():
-            if(len(d["word"])==dlen):
-                if(a["word"][apos]==d["word"][dpos]):
-                    fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\nor\n"
+# ares= requests.get("https://api.datamuse.com/words?ml="+across)
+# dres = requests.get("https://api.datamuse.com/words?ml="+down)
+# fn=""
+# for a in ares.json():
+#     if(len(a["word"])==alen):
+#         for d in dres.json():
+#             if(len(d["word"])==dlen):
+#                 if(a["word"][apos]==d["word"][dpos]):
+#                     fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\nor\n"
 
-print(fn)
+# print(fn)
     
 
 
@@ -426,3 +426,10 @@ print(fn)
 #         print(a)
 #     else:
 #         break
+
+import os
+import pickle
+if os.path.exists('./data/high.pkl'):
+    with open ('./data/high.pkl', 'rb') as f:
+        dataset_low_level = pickle.load(f)
+print(dataset_low_level)        
