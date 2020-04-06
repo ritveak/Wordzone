@@ -409,9 +409,9 @@
 # from wordfreq import top_n_list
 # from wordfreq import iter_wordlist
 # from wordfreq import get_frequency_dict
-# print(word_frequency('cafe', 'en'))
+# print(word_frequency('eat', 'en'))
 # print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
-# print(zipf_frequency('cafe', 'en'))
+# print(zipf_frequency('fart', 'en'))
 # print(zipf_frequency('of', 'en'))
 # print(zipf_frequency('and', 'en'))
 # print(zipf_frequency('mozambique', 'en'))
@@ -427,9 +427,16 @@
 #     else:
 #         break
 
-import os
+# import os
+# import pickle
+# if os.path.exists('./data/mid.pkl'):
+#     with open ('./data/low.pkl', 'rb') as f:
+#         dataset_low_level = pickle.load(f)
+# print(dataset_low_level)
+
+from collections import defaultdict
 import pickle
-if os.path.exists('./data/high.pkl'):
-    with open ('./data/high.pkl', 'rb') as f:
-        dataset_low_level = pickle.load(f)
-print(dataset_low_level)        
+with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
+         dataset = pickle.load(f)
+
+print(dataset.get(4.8))

@@ -6,16 +6,17 @@ from keras.preprocessing.sequence import TimeseriesGenerator
 import pickle
 
 def train(data_path):
-  with open(data_path, 'rb') as f:
+  with open("./data/"+data_path+".pkl", 'rb') as f:
     data_list = pickle.load(f)
 
   df = pd.DataFrame(data_list, columns=['frequency'])
 
-  frequency_train = df['Close'].values
+  frequency_train = df['frequency'].values
 
   look_back = 15
 
-  train_generator = TimeseriesGenerator(frequency_train, frequency_train, length=look_back, batch_size=20)
+  train_generator = TimeseriesGenerator(frequency_train, frequency_train, look_back, 20)
+  # train_generator = TimeseriesGenerator(frequency_train, frequency_train, length=look_back, batch_size=20)
 
   from keras.models import Sequential
   from keras.layers import LSTM, Dense
@@ -32,7 +33,7 @@ def train(data_path):
   num_epochs = 25
   model.fit_generator(train_generator, epochs=num_epochs, verbose=1)
 
-  with open('./models/model_' + data_path 'wb') as f:
+  with open('./models/model_' + data_path +".pkl" ,'wb') as f:
     pickle.dump(model, f)
 
 
@@ -42,7 +43,7 @@ def train_and_test(data_path):
 
   df = pd.DataFrame(data_list, columns=['frequency'])
 
-  frequency = df['Close'].values
+  frequency = df['frequency'].values
   frequency = frequency.reshape((-1,1))
 
   split_percent = 0.80
@@ -72,7 +73,7 @@ def train_and_test(data_path):
   num_epochs = 25
   model.fit_generator(train_generator, epochs=num_epochs, verbose=1)
 
-  with open('./models/model_' + data_path 'wb') as f:
+  with open('./models/model_' + data_path, 'wb') as f:
     pickle.dump(model, f)
 
   prediction = model.predict_generator(test_generator)
@@ -83,31 +84,32 @@ def train_and_test(data_path):
 
   return prediction
 
-  def predict(data_path, model, num_prediction=1):
+def predict(mtype, num_prediction=1):
+  with open("./data/"+mtype+".pkl", 'rb') as f:
+    data_list = pickle.load(f)
+  model=None
 
-    with open(data_path, 'rb') as f:
-      data_list = pickle.load(f)
+  with open('./models/model_' +mtype, 'wb') as f:
+    pickle.dump(model, f)
 
-    df = pd.DataFrame(data_list, columns=['frequency'])
+  df = pd.DataFrame(data_list, columns=['frequency'])
 
-    frequency = df['Close'].values
+  frequency = df['frequency'].values
 
-    prediction_list = frequency[-look_back:]
+  prediction_list = frequency[-look_back:]
+
+  for _ in range(num_prediction):
+      x = prediction_list[-look_back:]
+      x = x.reshape((1, look_back, 1))
+      out = model.predict(x)[0][0]
+      prediction_list = np.append(prediction_list, out)
+  prediction_list = prediction_list[look_back-1:]
+      
+  return prediction_list
     
-    for _ in range(num_prediction):
-        x = prediction_list[-look_back:]
-        x = x.reshape((1, look_back, 1))
-        out = model.predict(x)[0][0]
-        prediction_list = np.append(prediction_list, out)
-    prediction_list = prediction_list[look_back-1:]
-        
-    return prediction_list
-    
-def predict_dates(num_prediction):
-    last_date = df['Date'].values[-1]
-    prediction_dates = pd.date_range(last_date, periods=num_prediction+1).tolist()
-    return prediction_dates
 
-num_prediction = 30
-forecast = predict(num_prediction, model)
-forecast_dates = predict_dates(num_prediction)
+
+
+train("mid")
+
+# forecast = predict(num_prediction, model)

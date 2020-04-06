@@ -38,6 +38,10 @@ WindowManager:
     
     KHyperInput:
     KHyperRes:
+    LearnWindow:
+    LLow:
+    LMid:
+    LHigh:
 
     # pos:
 
@@ -62,7 +66,7 @@ WindowManager:
         text:"Find\nZone"
         bold: True
         on_release:app.root.current="FindWindow"
-        pos_hint:{"x":0.1,"y":0.35}
+        pos_hint:{"x":0.2,"y":0.45}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -79,7 +83,7 @@ WindowManager:
         text:"Understand\nZone"
         
         on_release:app.root.current="UnderstandWindow"
-        pos_hint:{"x":0.4,"y":0.35}
+        pos_hint:{"x":0.6,"y":0.45}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -94,7 +98,7 @@ WindowManager:
         text:"Knowledge\nZone"
         
         on_release:app.root.current="KnowWindow"
-        pos_hint:{"x":0.7,"y":0.35}
+        pos_hint:{"x":0.2,"y":0.15}
         size_hint:0.2,0.2
         font_size:20
         color:1,1,1,1
@@ -104,6 +108,25 @@ WindowManager:
         background_normal: ''
         background_color: 1, 1, 1, 0
         border:0.1,0.1,0.2,0.4
+
+
+    SmoothButton:
+        text:"Learning\nZone"
+        bold: True
+        on_release:app.root.current="LearnWindow"
+        pos_hint:{"x":0.6,"y":0.15}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border: 0, 32, 0, 32
+        size: 200, 64
+        center: root.width / 2, root.height / 2
+
 
 
 
@@ -374,6 +397,12 @@ WindowManager:
         background_normal: ''
         background_color: 1, 1, 1, 0
         border:0.1,0.1,0.2,0.4
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="FindWindow"
+        pos_hint:{"x":0.45,"y":0.15}
+    
 <FCrossDoubleInput>:
     name:"FCrossDoubleInput"
     across: a
@@ -1176,6 +1205,188 @@ WindowManager:
         on_release:app.root.current=app.stop() 
         pos_hint:{"x":0.6,"y":0.05}
 
+<LearnWindow>:
+    name:"LearnWindow"
+    Label:
+        text:"LEARNING ZONE !"
+        font_size:45
+        font_name:'Comic'
+        pos_hint:{"x":0.45,"y":0.8}
+        size_hint:0.1,0.1
+        underline:True
+    SmoothButton:
+        text:"Low\nwords "
+        bold: True
+        on_press:
+            root.manager.get_screen('LLow').res.text =root.ans('low')
+        on_release:app.root.current="LLow"
+        
+        
+        pos_hint:{"x":0.1,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        border: 0, 32, 0, 32
+        size: 200, 64
+        height: 50
+        center: root.width / 2, root.height / 2
+        
+    SmoothButton:
+        text:"Midium\nwords"
+        
+        on_press:
+            root.manager.get_screen('LMid').res.text =root.ans('Mid')
+        on_release:app.root.current="LMid"
+        pos_hint:{"x":0.4,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        # background_color: utils.get_color_from_hex('#58AE6F')
+        border:0.1,0.1,0.2,0.4
+
+    SmoothButton:
+        text:"High\nwords"
+        
+        on_press:
+            root.manager.get_screen('LHigh').res.text =root.ans('high')
+        on_release:app.root.current="LHigh"
+        pos_hint:{"x":0.7,"y":0.35}
+        size_hint:0.2,0.2
+        font_size:20
+        color:1,1,1,1
+        text_size: self.size     
+        halign: 'center'
+        valign: 'center'
+        background_normal: ''
+        background_color: 1, 1, 1, 0
+        # background_color: utils.get_color_from_hex('#58AE6F')
+        border:0.1,0.1,0.2,0.4
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="main"
+        pos_hint:{"x":0.4,"y":0.05}
+
+<LLow>:
+    name:"LLow"
+    res:res
+    Label:
+        text:"Here is a Low Level word for you to learn based on your usage"
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size:self.size 
+            # text_size: self.width, None
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+            padding_y:20
+                
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="LearnWindow"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
+
+<LMid>:
+    name:"LMid"
+    res:res
+    Label:
+        text:"Here is a Medium level word for you to learn based on your usage"
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size:self.size 
+            # text_size: self.width, None
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+            padding_y:20
+                
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="LearnWindow"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
+
+
+<LHigh>:
+    name:"LHigh"
+    res:res
+    Label:
+        text:"Here is a High level word for you to learn based on your usage"
+    ScrollView:
+        
+        do_scroll_x: False
+        size_hint_y:0.7
+        # pos: root.pos
+        pos_hint:{"x":0.15,"y":0.2}
+        
+
+        Output:
+            id:res
+            font_size: 20
+            # text_size:self.size 
+            # text_size: self.width, None
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            size_hint_y:None
+            height: self.texture_size[1]
+            halign: 'center'
+            valign: 'center'
+            padding_y:20
+                
+
+    GreenButton:
+        text:"Back"
+        on_release:app.root.current="main"
+        pos_hint:{"x":0.2,"y":0.05}
+    GreenButton:
+        text:"Exit"
+        on_release:app.root.current=app.stop() 
+        pos_hint:{"x":0.6,"y":0.05}
 
 <SmoothButton@Button>:
     background_color:(0,0,0,0)

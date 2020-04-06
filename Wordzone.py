@@ -12,7 +12,7 @@ from kivy.properties import StringProperty
 from kivy.uix.image import Image, AsyncImage
 import requests
 # from kivy.properties import ObjectProperty
-
+from model_util import predict
 import pronouncing
 import re
 import sys
@@ -20,6 +20,8 @@ from nltk.corpus import wordnet
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
+from collections import defaultdict
+import pickle
 # import pyttsx3 
 from spellchecker import SpellChecker
 spell = SpellChecker()
@@ -386,7 +388,7 @@ class FRhyOpt(Screen):
                     dataset_high_level = pickle.load(f)
                 for x in ss: 
                     new += x+"\n"
-                    if(zipf_frequency(x, 'en')<4 and zipf_frequency(x , 'en')> 0.5):
+                    if(zipf_frequency(x, 'en')<3.5 and zipf_frequency(x , 'en')> 0.5):
                         dataset_high_level.append(zipf_frequency(x, 'en'))
                 with open ('./data/high.pkl', 'wb') as f:
                     pickle.dump(dataset_high_level, f)
@@ -396,7 +398,7 @@ class FRhyOpt(Screen):
                 dataset_high_level = []
                 for x in ss: 
                     new += x+"\n"
-                    if(zipf_frequency(x, 'en')<4 and zipf_frequency(x, 'en')> 0.5):
+                    if(zipf_frequency(x, 'en')<3.5 and zipf_frequency(x, 'en')> 0.5):
                         dataset_high_level.append(zipf_frequency(x, 'en'))
                 with open ('./data/high.pkl', 'wb') as f:
                     pickle.dump(dataset_high_level, f)
@@ -564,9 +566,9 @@ class FCrossDoubleInput(Screen):
                 for d in dres.json():
                     if(len(d["word"])==dl):
                         if(a["word"][ap]==d["word"][dp]):
-                            if(zipf_frequency(a["word"] , 'en')<4 and zipf_frequency(a["word"] , 'en')> 0.5):
+                            if(zipf_frequency(a["word"] , 'en')<3.5 and zipf_frequency(a["word"] , 'en')> 0.5):
                                 dataset_high_level.append(zipf_frequency(a["word"] , 'en'))
-                            if(zipf_frequency(d["word"] , 'en')<4 and zipf_frequency(d["word"] , 'en')> 0.5):
+                            if(zipf_frequency(d["word"] , 'en')<3.5 and zipf_frequency(d["word"] , 'en')> 0.5):
                                 dataset_high_level.append(zipf_frequency(d["word"] , 'en'))
                             fn+="Across - "+a["word"] +"\nDown - "+ d["word"]+"\n\n"
                             
@@ -617,7 +619,7 @@ class FCrossSingleInput(Screen):
         for l in fn:
             if len(l) == leng:
                 new+=l+"\n"
-                if(zipf_frequency(l, 'en')<4 and zipf_frequency(l , 'en')> 0.5):
+                if(zipf_frequency(l, 'en')<3.5 and zipf_frequency(l , 'en')> 0.5):
                     dataset_high_level.append(zipf_frequency(l, 'en'))
         with open ('./data/high.pkl', 'wb') as f:
             pickle.dump(dataset_high_level, f)
@@ -732,11 +734,11 @@ class FScrabbleInput(Screen):
             if(l.isdigit()):
                 if(len(word)==int(l)):
                     new+=word+"\n"
-                    if(zipf_frequency(word, 'en')<4 and zipf_frequency(word , 'en')> 0.5):
+                    if(zipf_frequency(word, 'en')<3.5 and zipf_frequency(word , 'en')>1.5):
                         dataset_high_level.append(zipf_frequency(word, 'en'))
             else:
                 new+=word+"\n"
-                if(zipf_frequency(word, 'en')<4 and zipf_frequency(word , 'en')> 0.5):
+                if(zipf_frequency(word, 'en')<3.5 and zipf_frequency(word , 'en')> 1.5):
                         dataset_high_level.append(zipf_frequency(word, 'en'))
         with open ('./data/high.pkl', 'wb') as f:
                 pickle.dump(dataset_high_level, f)
@@ -763,7 +765,7 @@ class UnderstandWindow(Screen):
         else:
             dataset_mid_level = []
 
-        if(zipf_frequency(word, 'en')>4 and zipf_frequency(word , 'en')<6):
+        if(zipf_frequency(word, 'en')>2.5 and zipf_frequency(word , 'en')<4.5):
                 dataset_mid_level.append(zipf_frequency(word, 'en'))
         with open ('./data/mid.pkl', 'wb') as f:
             pickle.dump(dataset_mid_level, f)
@@ -823,6 +825,18 @@ class KSynInput(Screen):
         if(word==""):
             return "No word entered"
 
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f) 
+
+        else:
+            dataset_low_level = []
+
+        if(zipf_frequency(word, 'en')>4):
+                dataset_low_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/low.pkl', 'wb') as f:
+            pickle.dump(dataset_low_level, f)
+
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas(): 
                 synonyms.append(l.name())
@@ -856,6 +870,19 @@ class KAntoInput(Screen):
         antonyms = []
         if(word==""):
             return "No word entered"
+
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f) 
+
+        else:
+            dataset_low_level = []
+
+        if(zipf_frequency(word, 'en')>4):
+                dataset_low_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/low.pkl', 'wb') as f:
+            pickle.dump(dataset_low_level, f)
+
         for syn in wordnet.synsets(word): 
             for l in syn.lemmas():  
                 if l.antonyms(): 
@@ -888,6 +915,18 @@ class KHyperInput(Screen):
         sn=""
         if(word==""):
             return "No word entered"
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f) 
+
+        else:
+            dataset_low_level = []
+
+        if(zipf_frequency(word, 'en')>4):
+                dataset_low_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/low.pkl', 'wb') as f:
+            pickle.dump(dataset_low_level, f)
+
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.hypernyms()#broader category:colour is a hypernym of red.
@@ -910,6 +949,18 @@ class KHyperInput(Screen):
         sn=""
         if(word==""):
             return "No word entered"
+
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f) 
+
+        else:
+            dataset_low_level = []
+
+        if(zipf_frequency(word, 'en')>4):
+                dataset_low_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/low.pkl', 'wb') as f:
+            pickle.dump(dataset_low_level, f)
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.hyponyms()#broader category:colour is a hypernym of red.
@@ -932,6 +983,18 @@ class KHyperInput(Screen):
         sn=""
         if(word==""):
             return "No word entered"
+        
+        if os.path.exists('./data/low.pkl'):
+            with open ('./data/low.pkl', 'rb') as f:
+                dataset_low_level = pickle.load(f) 
+
+        else:
+            dataset_low_level = []
+
+        if(zipf_frequency(word, 'en')>4):
+                dataset_low_level.append(zipf_frequency(word, 'en'))
+        with open ('./data/low.pkl', 'wb') as f:
+            pickle.dump(dataset_low_level, f)
         syns=wordnet.synsets(word)
         for syn in syns:
             s=syn.member_holonyms()#broader category:colour is a hypernym of red.
@@ -955,7 +1018,27 @@ class KHyperRes(Screen):
 
 # class pos(Screen):
 #     pass
+class LearnWindow(Screen):
+    def ans(self,type):
+        a = predict(type)
+        with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
+            dataset = pickle.load(f)
+        ans=dataset.get(a[0])
+        s = ""
+        for a in ans:
+            s+=a+"\n"
+        return s
+    
 
+class LLow(Screen):
+    pass
+    
+
+class LMid(Screen):
+    pass
+
+class LHigh(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
