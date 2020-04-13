@@ -97,7 +97,7 @@ def predict(mtype, num_prediction=1):
 
   df = pd.DataFrame(data_list, columns=['frequency'])
 
-  frequency = df['frequency'].values
+  frequency = df['frequency'].values[-look_back:]
 
   prediction_list = frequency[-look_back:]
 
