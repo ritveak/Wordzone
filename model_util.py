@@ -11,12 +11,12 @@ def train(data_path):
 
   df = pd.DataFrame(data_list, columns=['frequency'])
 
-  frequency_train = df['frequency'].values
+  frequency_train = df['frequency'].values.reshape((-1, 1))
 
-  look_back = 15
+  look_back = 5
 
-  train_generator = TimeseriesGenerator(frequency_train, frequency_train, look_back, 20)
-  # train_generator = TimeseriesGenerator(frequency_train, frequency_train, length=look_back, batch_size=20)
+  # train_generator = TimeseriesGenerator(frequency_train, frequency_train, 5, 20)
+  train_generator = TimeseriesGenerator(frequency_train, frequency_train, length=look_back, batch_size=20)
 
   from keras.models import Sequential
   from keras.layers import LSTM, Dense
@@ -31,6 +31,7 @@ def train(data_path):
   model.compile(optimizer='adam', loss='mse')
 
   num_epochs = 25
+  # train_generator = train_generator.reshape(-1, -1, 1)
   model.fit_generator(train_generator, epochs=num_epochs, verbose=1)
 
   with open('./models/model_' + data_path +".pkl" ,'wb') as f:
@@ -89,8 +90,10 @@ def predict(mtype, num_prediction=1):
     data_list = pickle.load(f)
   model=None
 
-  with open('./models/model_' +mtype, 'wb') as f:
-    pickle.dump(model, f)
+  look_back=5
+
+  with open('./models/model_' +mtype+".pkl", 'rb') as f:
+    model=pickle.load(f)
 
   df = pd.DataFrame(data_list, columns=['frequency'])
 
@@ -110,6 +113,6 @@ def predict(mtype, num_prediction=1):
 
 
 
-train("mid")
+# train("low")
 
 # forecast = predict(num_prediction, model)

@@ -427,16 +427,16 @@
 #     else:
 #         break
 
-# import os
-# import pickle
-# if os.path.exists('./data/mid.pkl'):
-#     with open ('./data/low.pkl', 'rb') as f:
-#         dataset_low_level = pickle.load(f)
-# print(dataset_low_level)
-
-from collections import defaultdict
+import os
 import pickle
-with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
-         dataset = pickle.load(f)
+if os.path.exists('./data/mid.pkl'):
+    with open ('./data/high.pkl', 'rb') as f:
+        dataset_low_level = pickle.load(f)
+print(dataset_low_level)
 
-print(dataset.get(4.8))
+# from collections import defaultdict
+# import pickle
+# with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
+#          dataset = pickle.load(f)
+
+# print(dataset.get(4.8))

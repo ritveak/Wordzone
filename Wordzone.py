@@ -11,6 +11,7 @@ from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty
 from kivy.uix.image import Image, AsyncImage
 import requests
+import random
 # from kivy.properties import ObjectProperty
 from model_util import predict
 import pronouncing
@@ -1024,10 +1025,29 @@ class LearnWindow(Screen):
         with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
             dataset = pickle.load(f)
         ans=dataset.get(a[0])
-        s = ""
-        for a in ans:
-            s+=a+"\n"
-        return s
+        str=""
+        count=0
+        while(str==""):
+            count+=1
+            q = random.choice(ans)
+            str="WORD : "+q.upper()+"\n\n\n"
+            response= requests.get("https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/"+q+"?strictMatch=false",headers={"Accept": "application/json","app_id": "c1498ba3","app_key": "ec959282e97d787344cbe7cfeb13c965"})
+            try:
+                for a in response.json()["results"]:
+                    for b in a["lexicalEntries"][0]["entries"][0]["senses"]:
+                        str+="Definition : "+b["definitions"][0]+"\n\n"
+                        str+="Example : "+b["examples"][0]["text"]+"\n\n"   
+            except KeyError:
+                str=""
+                if(count>len(ans)-2):
+                    str="No word was found, try again\n\n"
+
+
+            
+        # s = ""
+        # for a in ans:
+        #     s+=a+"\n"
+        return str
     
 
 class LLow(Screen):
