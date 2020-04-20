@@ -1022,6 +1022,7 @@ class KHyperRes(Screen):
 class LearnWindow(Screen):
     def ans(self,type):
         a = predict(type)
+        print(a)
         with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
             dataset = pickle.load(f)
         ans=dataset.get(a[0])

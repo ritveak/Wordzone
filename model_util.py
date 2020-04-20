@@ -113,6 +113,6 @@ def predict(mtype, num_prediction=1):
 
 
 
-# train("low")
+# train("mid")
 
 # forecast = predict(num_prediction, model)
