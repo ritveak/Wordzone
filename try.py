@@ -323,7 +323,10 @@
 # # print(str)
 # # print(len(spell.candidates(str)))
 
-# import pronouncing
+import pronouncing
+fb = pronouncing.rhymes("light")
+for a in fb:
+    print(a+" ")
 # import re
 # import sys
 # from nltk.corpus import wordnet
@@ -427,12 +430,12 @@
 #     else:
 #         break
 
-import os
-import pickle
-if os.path.exists('./data/mid.pkl'):
-    with open ('./data/mid.pkl', 'rb') as f:
-        dataset_low_level = pickle.load(f)
-print(dataset_low_level)
+# import os
+# import pickle
+# if os.path.exists('./data/mid.pkl'):
+#     with open ('./data/mid.pkl', 'rb') as f:
+#         dataset_low_level = pickle.load(f)
+# print(dataset_low_level)
 
 # from collections import defaultdict
 # import pickle
