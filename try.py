@@ -323,10 +323,10 @@
 # # print(str)
 # # print(len(spell.candidates(str)))
 
-import pronouncing
-fb = pronouncing.rhymes("light")
-for a in fb:
-    print(a+" ")
+# import pronouncing
+# fb = pronouncing.rhymes("light")
+# for a in fb:
+#     print(a+" ")
 # import re
 # import sys
 # from nltk.corpus import wordnet
@@ -412,11 +412,11 @@ for a in fb:
 # from wordfreq import top_n_list
 # from wordfreq import iter_wordlist
 # from wordfreq import get_frequency_dict
-# print(word_frequency('eat', 'en'))
+# print(word_frequency('the', 'en'))
 # print(word_frequency('cafe', 'en')>word_frequency('indite', 'en'))
 # print(zipf_frequency('fart', 'en'))
-# print(zipf_frequency('of', 'en'))
-# print(zipf_frequency('and', 'en'))
+# print(zipf_frequency('pant', 'en'))
+# print(zipf_frequency('crazy', 'en'))
 # print(zipf_frequency('mozambique', 'en'))
 # print(zipf_frequency('cumbersome', 'en'))
 
@@ -430,12 +430,23 @@ for a in fb:
 #     else:
 #         break
 
+
+
 # import os
 # import pickle
-# if os.path.exists('./data/mid.pkl'):
-#     with open ('./data/mid.pkl', 'rb') as f:
-#         dataset_low_level = pickle.load(f)
-# print(dataset_low_level)
+
+# # inp=[6.05, 5.79, 5.17, 4.22, 4.77, 6.12, 4.32, 4.67, 6.32,5.18,4.07, 4.95, 4.07, 5.42, 4.72, 4.72, 6.12, 4.57, 5.12,6.07, 4.49, 4.07, 5.62, 6.52,4.12, 5.12, 6.37, 4.41,6.05, 4.79, 5.17, 4.22, 4.77, 5.12, 5.32, 6.67, 4.32,5.18,6.07, 4.95,4.07, 4.42, 5.72, 4.75, 4.12, 4.57, 5.12,5.07, 5.49, 5.07, 5.62, 5.52, 5.12, 5.12, 5.37, 5.41]
+# # inp=[3.05, 2.79, 2.17, 2.22, 2.77, 3.12, 3.32, 2.67, 2.32,3.18,3.07, 2.95, 3.07, 2.42, 2.72, 2.72, 3.12, 2.57, 3.12,3.07, 2.49, 3.07, 2.62, 2.52, 3.12, 2.12, 3.37, 2.41,3.05, 2.79, 3.17, 3.22, 2.77, 2.12, 2.32, 2.67, 3.32,3.18,3.07, 2.05, 3.07, 2.42, 2.22, 2.72,2.12, 2.57, 3.12,2.07, 2.49, 3.07, 2.62, 2.52, 3.12, 3.12, 3.37, 3.41]
+
+# if os.path.exists('./data/high.pkl'):
+#     with open ('./data/high.pkl', 'rb') as f:
+#         dataset_mid_level = pickle.load(f) 
+#         # for a in inp:
+#         #     dataset_mid_level.append(a)
+
+# with open ('./data/chk1.pkl', 'wb') as f:
+#             pickle.dump(dataset_mid_level, f)
+# print(dataset_mid_level)
 
 # from collections import defaultdict
 # import pickle

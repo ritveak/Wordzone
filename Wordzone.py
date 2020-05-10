@@ -765,7 +765,7 @@ class UnderstandWindow(Screen):
 
         else:
             dataset_mid_level = []
-
+        print(zipf_frequency(word, 'en'))
         if(zipf_frequency(word, 'en')>2.5 and zipf_frequency(word , 'en')<4.5):
                 dataset_mid_level.append(zipf_frequency(word, 'en'))
         with open ('./data/mid.pkl', 'wb') as f:
