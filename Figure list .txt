@@ -38,86 +38,109 @@ Fig 5.25 Learning Zone Pickle files
 Fig 5.26 Learning Zone flow
 
 
+
+
 1. INTRODUCTION
-1.1 OBJECTIVE	1
+1.1	OBJECTIVE	1
 1.2 MOTIVATION	1
-1.3 COMPONENTS	2
+1.3 BACKGROUND	2
+2. PROJECT DESCRIPTION AND GOAL
+2.1 COMPONENTS	4
+2.1.1 FIND ZONE 	4
+2.1.2 UNDERSTAND ZONE	4
+2.1.3 KNOWLEDGE ZONE	5
+2.1.4 LEARNING ZONE	5
+2.2 GOAL 	5
 
-------added----------
-1.3.1 FINDZONE 2
-1.3.2 UNDERSTAND ZONE 2
-1.3.3 KNOWLEDGE ZONE 2
-1.3.4 LEARINING ZONE 3
---------------------------------------------
+3. TECHNICAL SPECIFICATION
+3.1 PROGRAMMING LANGUAGE	6
+3.1.1 PYTHON 	6
+3.1.2 KIVY 	7
+3.2 TOOLS AND LIBRARIES	7
+3.2.1 NLTK 	7
+3.2.2 WORDNET 	8
+3.2.3 SPELL CHECKER 	9
+3.2.4 PRONOUNCING  	10
+3.2.5 DATAMUSE AND OXFORD API	11
+3.2.6 WORDFREQ	13
+3.2.7 PICKLE	14
 
-2. LITERATURE SURVEY 	4
+3.3 TRAINING MODEL	15
+3.3.1 LSTM 	15
 
-3. DESIGN 
-3.1 UML DESIGN	6
-3.1.1 FIND ZONE 	6
+4. DESIGN
+4.1 UML DESIGN	16
+4.1.1 FIND ZONE 	16
+4.1.2 UNDERSTAND ZONE	17
+4.1.3 KNOWLEDGE ZONE	18
+4.1.4 LEARNING ZONE	19
+4.2 SYSTEM ARCHITECTURE	20
 
-
------reverese order-----
-3.1.2 UNDERSTAND ZONE	7
-3.1.3 KNOWLEDGE ZONE	8
---------------------------------------------------------
-
-3.1.4 LEARNING ZONE	9
-3.2 SYSTEM ARCHITECTURE	10
-
-4. SOFTWARE REQUIREMENTS
-4.1 PROGRAMMING LANGUAGE	11
-4.1.1 PYTHON 	11
-4.1.2 KIVY 	12
-----------edit-----------
-4.2 TOOLS AND LIBRARIES	12
--------------------------
-4.2.1 NLTK 	12
-4.2.2 SPELL CHECKER 	14
-4.2.3 PRONOUNCING  	15
-4.2.4 DATAMUSE AND OXFORD API	16
-4.2.5 WORDFREQ	18
-4.2.6 PICKLE	19
-
-4.3 TRAINING MODEL	19
-4.3.1 LSTM 	20
+5. SCHEDULE AND MILESTONES
+5.1 SCHEDULE	21
+5.2 MILESTONE	22
 
 
-5. MODULE DESCRIPTION
-5.1 FIND ZONE	22
-5.1.1 RHYMING ZONE 	23
-5.1.2 CROSSWORD HELPER 	27
-5.1.3 SCRABBLE HELPER 	31
-5.2 UNDERSTAND ZONE	34
-5.3 KNOWLEDGE ZONE	36
-5.3.1 SIMILAR MEANING WORDS 	37
-5.3.2 OPPOSITE MEANING WORDS 	39
-5.3.3 HYPERNYM / HYPONYMN / HOLONYM 	41
-5.4 LEARNING ZONE	44
-5.4.1 LOW LEVEL WORDS 	45
-5.4.2 MEDIUM LEVEL WORDS 	45
-5.4.3 HIGH LEVEL WORDS 	45
-5.4.4 TRAINING AND PREDICTION 	46
+6. PROJECT DEMONSTRATION
+6.1 FIND ZONE	24
+6.1.1 RHYMING ZONE 	25
+6.1.2 CROSSWORD HELPER 	29
+6.1.3 SCRABBLE HELPER 	33
+6.2 UNDERSTAND ZONE	36
+6.3 KNOWLEDGE ZONE	38
+6.3.1 SIMILAR MEANING WORDS 	39
+6.3.2 OPPOSITE MEANING WORDS 	41
+6.3.3 HYPERNYM / HYPONYMN / HOLONYM 	43
+6.4 LEARNING ZONE	46
+6.4.1 LOW LEVEL WORDS 	47
+6.4.2 MEDIUM LEVEL WORDS 	47
+6.4.3 HIGH LEVEL WORDS 	47
+6.4.4 TRAINING AND PREDICTION 	48
 
-
----------addition------------
-6 Conclusion 49
-7 Future Work 49
-8 References 50
-
-
-
-----------------------------------------------------------------------
+7. RESULT & DISCUSSION	51
+8. SUMMARY 	52
+9. REFERENCES 	53
 
 
 
 
 
-
-
-
-
-
+3.1	Spell Checker	
+3.2	Pronouncing Output	15
+3.3	Datamuse API Output	16
+3.4	Oxford Dictionary API Output	17
+3.5	WordFreq code and output	18
+4.1	Find Zone UML	6
+4.2	Understand Zone UML	7
+4.3	Knowledge Zone UML	8
+4.4	Learning Zone UML	9
+4.5	System Architecture	10
+6.1	Home Screen	21
+6.2	FindZone Screen	22
+6.3	Rhymer Dictionary Screen	24
+6.4	Rhymer Dictionary Option Screen	25
+6.5	Rhymer Dictionary Input Screen	25
+6.6	Rhymer Dictionary Output Screen	26
+6.7	Rhymer Dictionary misspelled Output Screen	26
+6.8	Crossword Helper Input Screen	28
+6.9	Crossword Helper Output Screen	29
+6.10	Crossword Helper Narrower Results Selection Screen	29
+6.11	Crossword Helper Narrower Results Screen	30
+6.12	Scrabble Helper Input Screen	32
+6.13	Scrabble Helper Output Screen	33
+6.14	Understand Zone Input Screen	35
+6.15	Understand Zone Output Screen	35
+6.16	Knowledge Zone Screen	36
+6.17	Knowledge Zone Synonyms Input Screen	38
+6.18	Knowledge Zone Synonyms Output Screen	38
+6.19	Knowledge Zone Antonyms Input Screen	40
+6.20	Knowledge Zone Synonyms Output Screen	40
+6.21	Knowledge Zone Hypernymn input Screen	43
+6.22	Knowledge Zone Hypernymn Output Screen	43
+6.23	Learning Zone Screen	44
+6.24	Learning Zone training data to learning section mapping	45
+6.25	Learning Zone Pickle files	46
+6.26	Learning Zone flow	46
 
 
 
