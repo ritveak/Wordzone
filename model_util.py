@@ -32,7 +32,7 @@ def train(data_path):
 
   with open('./models/model_' + data_path +".pkl" ,'wb') as f:
     pickle.dump(model, f)
-
+  # print(model.summary())
 
 # def train_and_test(data_path):
 #   with open(data_path, 'rb') as f:

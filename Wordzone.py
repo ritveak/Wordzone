@@ -545,9 +545,9 @@ class FCrossDoubleInput(Screen):
             else:
                 d+="+"+w
 
-        ap=int(apos)
+        ap=int(apos)-1
         al=int(alen)
-        dp=int(dpos)
+        dp=int(dpos)-1
         dl=int(dlen)
 
         ares= requests.get("https://api.datamuse.com/words?ml="+a)
@@ -1025,7 +1025,7 @@ class LearnWindow(Screen):
         print(a)
         with open ('corpus_data/frequenc_words.pkl', 'rb') as f:
             dataset = pickle.load(f)
-        ans=dataset.get(a[0])
+        ans=dataset.get(round(a[-1], 2))
         str=""
         count=0
         while(str==""):
